@@ -4,6 +4,7 @@ using CompanyManager.Models.Database;
 using CompanyManager.Models.SortingOptions;
 using CompanyManager.Models.View;
 using CompanyManager.Repositories.Interfaces;
+using CompanyManager.Services.Interfaces;
 using CompanyManager.Validators;
 using EntityFrameworkPaginateCore;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CompanyManager.Services
 {
-    public class EmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private IEmployeesRepository _repository;
         private IEmployeeFactory _factory;
