@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace CompanyManager.Models.View
 {
@@ -20,9 +19,6 @@ namespace CompanyManager.Models.View
 
         [JsonProperty("streetNumber")]
         public int StreetNumber { get; set; }
-
-        [JsonProperty("officeDocuments")]
-        public List<OfficeDocumentViewData> OfficeDocuments { get; set; } = new List<OfficeDocumentViewData>();
 
         [JsonProperty("isHeadquarters")]
         public bool IsHeadquarters { get; set; }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CompanyManager.DatabaseContext;
 using CompanyManager.Mappers.Interfaces;
+using CompanyManager.Models.SortingOptions;
 using CompanyManager.Models.View;
 using CompanyManager.Repositories.Interfaces;
 using EntityFrameworkPaginateCore;
@@ -37,19 +38,17 @@ namespace CompanyManager.Repositories
             return entity;
         }
 
-        //public async Task<Page<CompanyViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, SortByOptions sortBy)
-        //{
-        //    var filters = new Filters<CompanyViewData>();
-        //    filters.Add(!string.IsNullOrEmpty(searchText), x => x.Name.Contains(searchText));
+        public async Task<Page<CompanyViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, CompanySortingOptions sortBy)
+        {
+            var filters = new Filters<CompanyViewData>();
+            filters.Add(!string.IsNullOrEmpty(searchText), x => x.Name.Contains(searchText));
 
-        //    var sorts = new Sorts<CompanyViewData>();
-        //    sorts.Add(sortBy == SortByOptions.Name, x => x.Name);
-        //    sorts.Add(sortBy == SortByOptions.CreatedAt, x => x.CreatedAt);
-        //    sorts.Add(sortBy == SortByOptions.EditedAt, x => x.EditedAt);
+            var sorts = new Sorts<CompanyViewData>();
+            sorts.Add(sortBy == CompanySortingOptions.Name, x => x.Name);
 
-        //    return await _dbContext.Companies
-        //        .Select(e => _mapper.MapToViewModel(e))
-        //        .PaginateAsync(currentPage, pageSize, sorts, filters);
-        //}
+            return await _dbContext.Companies
+                .Select(e => _mapper.MapToViewModel(e))
+                .PaginateAsync(currentPage, pageSize, sorts, filters);
+        }
     }
 }

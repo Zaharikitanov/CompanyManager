@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using CompanyManager.DatabaseContext;
 using CompanyManager.Mappers.Interfaces;
+using CompanyManager.Models.SortingOptions;
 using CompanyManager.Models.View;
 using CompanyManager.Repositories.Interfaces;
+using EntityFrameworkPaginateCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyManager.Repositories
@@ -36,6 +38,21 @@ namespace CompanyManager.Repositories
             return entity;
         }
 
+        public async Task<Page<OfficeViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, OfficeSortingOptions sortBy)
+        {
+            var filters = new Filters<OfficeViewData>();
+            filters.Add(!string.IsNullOrEmpty(searchText), x => x.City.Contains(searchText));
+            filters.Add(!string.IsNullOrEmpty(searchText), x => x.Country.Contains(searchText));
+            filters.Add(!string.IsNullOrEmpty(searchText), x => x.Street.Contains(searchText));
 
+            var sorts = new Sorts<OfficeViewData>();
+            sorts.Add(sortBy == OfficeSortingOptions.City, x => x.City);
+            sorts.Add(sortBy == OfficeSortingOptions.Country, x => x.Country);
+            sorts.Add(sortBy == OfficeSortingOptions.Street, x => x.Street);
+
+            return await _dbContext.Offices
+                .Select(e => _mapper.MapToViewModel(e))
+                .PaginateAsync(currentPage, pageSize, sorts, filters);
+        }
     }
 }

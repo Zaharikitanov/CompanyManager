@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CompanyManager.Models.SortingOptions;
 using CompanyManager.Models.View;
+using EntityFrameworkPaginateCore;
 
 namespace CompanyManager.Repositories.Interfaces
 {
@@ -9,5 +11,6 @@ namespace CompanyManager.Repositories.Interfaces
     {
         Task<List<OfficeViewData>> GetEntitiesListAsync();
         Task<OfficeViewData> GetEntityDetailsAsync(Guid entityId);
+        Task<Page<OfficeViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, OfficeSortingOptions sortBy);
     }
 }
