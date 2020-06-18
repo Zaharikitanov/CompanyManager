@@ -1,0 +1,145 @@
+$optileaderTeal: #11CDEF;
+$black: #000;
+$white: #fff;
+$silver: #c1c1c1;
+
+.optileader-teal-background {
+    background-color: $optileaderTeal;
+
+    &:hover, &:active {
+        background-color: #21dcfe !important;
+        color: $white !important;
+    }
+}
+
+.optileader-teal-color {
+    color: $optileaderTeal;
+}
+
+.silver-background {
+    background-color: $silver;
+}
+
+.transparent-background {
+    background-color: transparent;
+    .breadcrumb {
+        background-color: transparent; 
+    }
+}
+
+.white-font-color {
+    color: $white;
+}
+
+.black-font-color {
+    color: $black;
+}
+
+#root {
+    .login-screen {
+        margin-left: 0;
+        background: #172b4d;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.manufacturer-buttons {
+    .btn-primary {
+        padding: 10px;
+    }
+}
+
+.contact-lenses-buttons {
+    .btn-primary {
+        width: 20%;
+    }
+}
+
+.btn-group {
+    .btn-primary {
+        background: #d3d3d3;
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid transparent !important;
+    }
+    .btn-primary.active {
+        background-color: $optileaderTeal !important;
+    }
+}
+
+#navbar-main {
+    background-color: $white;
+}
+
+#sidenav-main {
+    @media (max-width: 1575px){
+        max-width: 180px;
+    }
+}
+
+#navbar-main,
+.main-content {
+    margin-left: 250px;
+
+    @media (max-width: 1575px){
+        margin-left: 180px;
+
+        .container-fluid {
+            padding: 0 !important;
+        }
+    }
+}
+
+.d-flex-none {
+    flex-direction: unset;
+}
+
+.f-size-14 {
+    font-size: 14px;
+}
+
+.f-size-18 {
+    font-size: 18px;
+    color: $black;
+    text-align: center;
+    
+    &:focus {
+        color: $black;
+    }
+}
+
+.f-size-22 {
+    font-size: 22px;
+}
+
+td.f-size-16, th.f-size-16, .f-size-16 {
+    font-size: 16px !important;
+}
+
+.table-border-blue {
+
+    background-color: $white;
+
+    th, tr, td {
+        border: 2px solid $optileaderTeal;
+        padding: 1.25rem !important;
+    }
+
+    td {
+        padding: 0 !important;
+        vertical-align: middle;
+        
+        input {
+            border: 1px solid transparent;
+
+            &:focus {
+                border: 1px solid transparent;
+            }
+        }
+    }
+}
+

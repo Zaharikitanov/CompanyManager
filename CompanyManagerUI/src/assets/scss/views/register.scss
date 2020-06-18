@@ -1,0 +1,26 @@
+.register-form {
+
+    .form-group {
+
+        &:nth-of-type(4) {
+            .result-message {
+                
+                height: auto;
+            }
+        }
+
+        margin-bottom: 0.5rem;
+
+        .input-group {
+            margin-bottom: 2px !important;
+        }
+
+        .result-message {
+            display: block;
+            height: 22px;
+            color: #e57373;
+        } 
+    }  
+    
+    
+}
