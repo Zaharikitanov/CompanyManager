@@ -19,6 +19,8 @@ namespace CompanyManagerApi
 {
     public class Startup
     {
+        private const string AllowAllCorsPolicy = "Allow All Cors Policy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,6 +32,12 @@ namespace CompanyManagerApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowAllCorsPolicy,
+                    builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -50,6 +58,7 @@ namespace CompanyManagerApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(AllowAllCorsPolicy);
             }
 
             app.UseMvc();

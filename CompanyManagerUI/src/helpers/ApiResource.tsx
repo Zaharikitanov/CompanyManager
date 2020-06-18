@@ -24,7 +24,7 @@ const ApiResource = (props: ApiResourceProps): JSX.Element => {
             case 401:
             case 404:
             case 500:
-                return <Redirect to='/admin' />
+                return <Redirect to='/' />
             default:
                 return <Redirect to='/' />
         }
@@ -56,7 +56,6 @@ const ApiResource = (props: ApiResourceProps): JSX.Element => {
         return <Redirect to={AdminRoute.Index} />
     }
 
-    console.log(data);
     return props.children(data);
 }
 

@@ -40,7 +40,7 @@ namespace CompanyManagerApi.Services
             return EntityActionOutcome.Success;
         }
 
-        public async Task<EntityActionOutcome> UpdateEntityAsync(CompanyInputData viewData, Guid id)
+        public async Task<EntityActionOutcome> UpdateEntityAsync(CompanyViewData viewData)
         {
             var validator = new CompanyDataInputValidator();
             var result = validator.Validate(viewData);
@@ -49,7 +49,7 @@ namespace CompanyManagerApi.Services
                 return EntityActionOutcome.UpdateFailed;
 
             var updateSuccessful = await _repository.UpdateAsync(
-                await PopulateEntityDataWithViewData(viewData, id));
+                await PopulateEntityDataWithViewData(viewData, viewData.Id));
 
             if (updateSuccessful == null)
                 return EntityActionOutcome.EntityNotFound;

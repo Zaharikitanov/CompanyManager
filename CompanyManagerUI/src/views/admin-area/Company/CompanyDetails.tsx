@@ -17,11 +17,11 @@ const CompanyDetails = (props): JSX.Element => {
 
   return <>
     <ApiResource url={`company/${objectData.getObjectData}`}>
-        {(companyData: CompanyViewModel) => <>
-          <CompanyTemplate viewType={TemplateView.View} templateData={companyData.companyDetails} />
+        {(companyData: CompanyDetailsData) => <>
+          <CompanyTemplate viewType={TemplateView.View} templateData={companyData} />
           <Card className="mt-4">
-            <h6 className="heading-small f-size-16 m-4">Прилежащи обекти</h6>
-            <FacilitiesList listData={companyData.facilities} />
+            <h6 className="heading-small f-size-16 m-4">Offices</h6>
+            {/* <FacilitiesList listData={companyData.facilities} /> */}
           </Card>
         </>}
     </ApiResource>

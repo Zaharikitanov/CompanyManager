@@ -1,6 +1,6 @@
 import wretch, { WretcherError } from "wretch"
 
-const serverAddress = "https://localhost:5001/api";
+const serverAddress = "http://localhost:5000/api";
 
 export const CreateItem = (data, controller) => {
     wretch(`${serverAddress}/${controller}`)

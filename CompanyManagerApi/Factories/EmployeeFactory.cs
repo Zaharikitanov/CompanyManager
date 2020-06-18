@@ -1,7 +1,6 @@
 ﻿using CompanyManagerApi.Factories.Interfaces;
 using CompanyManagerApi.Models.Database;
 using CompanyManagerApi.Models.View;
-using System;
 
 namespace CompanyManagerApi.Factories
 {
@@ -18,7 +17,6 @@ namespace CompanyManagerApi.Factories
                 ProfileImage = viewData.ProfileImage,
                 Salary = viewData.Salary,
                 VacationDays = viewData.VacationDays,
-                StartingDate = DateTime.Now.ToString(),
             };
         }
     }

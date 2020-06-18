@@ -18,15 +18,13 @@ import FacilityDetails from "./views/admin-area/Facility/FacilityDetails";
 import AddEmployee from "./views/admin-area/Employee/AddEmployee";
 import EditEmployee from "./views/admin-area/Employee/EditEmployee";
 import EmployeeDetails from "./views/admin-area/Employee/EmployeeDetails";
-import AllCustomers from "./views/admin-area/All-Customers";
-import Customers from "./views/client-area/Customers";
 
 //client pages
 
 import { UserRole } from './components/enums/UserRole';
 
 export enum AdminRoute {
-  Index = "/admin",
+  Index = "/",
   Companies = "/companies",
   Facilities = "/facilities",
   Employees = "/employees",
@@ -42,13 +40,6 @@ export enum AdminRoute {
   Customers = "/all-customers",
 }
 
-export enum ClientRoute {
-  Index = "/",
-  Order = "/order",
-  AddClient = "/add-customer",
-  Customers = "/customers",
-}
-
 export enum SharedRoute {
   EditClient = "/edit-customer",
   ClientDetails = "/customer-details",
@@ -57,71 +48,60 @@ export enum SharedRoute {
 var AdministratorRoutes = [
   {
     path: AdminRoute.Index,
-    name: "Фирми",
+    name: "Companies",
     icon: "fas fa-atlas text-blue",
-    component: AdminHome,
-    role: UserRole.Administrator
+    component: Companies,
   },
   {
-    path: AdminRoute.Customers,
-    name: "Клиенти",
-    icon: "fas fa-users text-purple",
-    component: AllCustomers,
-    role: UserRole.Administrator
+    path: AdminRoute.Facilities,
+    name: "Offices",
+    icon: "fas fa-atlas text-blue",
+    component: Facilities,
   },
   {
     path: AdminRoute.AddCompany,
-    name: "Добави Фирма",
+    name: "Add Company",
     component: AddCompany,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.EditCompany,
-    name: "Промени Фирма",
+    name: "Edit Company",
     component: EditCompany,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.CompanyDetails,
-    name: "Детайли",
+    name: "Details",
     component: CompanyDetails,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.AddFacility,
-    name: "Добави Обект",
+    name: "Add Office",
     component: AddFacility,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.EditFacility,
-    name: "Промени Обект",
+    name: "Edit Office",
     component: EditFacility,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.FacilityDetails,
-    name: "Детайли",
+    name: "Details",
     component: FacilityDetails,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.AddEmployee,
-    name: "Добави Служител",
+    name: "Add Employee",
     component: AddEmployee,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.EditEmployee,
-    name: "Промени Служител",
+    name: "Edit Employee",
     component: EditEmployee,
-    role: UserRole.Administrator
   },
   {
     path: AdminRoute.EmployeeDetails,
-    name: "Детайли",
+    name: "Details",
     component: EmployeeDetails,
-    role: UserRole.Administrator
   }
 ];
 

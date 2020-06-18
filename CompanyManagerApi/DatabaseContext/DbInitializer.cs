@@ -29,7 +29,7 @@ namespace CompanyManagerApi.DatabaseContext
             {
                 System.Console.WriteLine("Adding companies - seeding...");
                 context.Companies.AddRange(
-                    new Company() { Id = companyId, Name = "Nice Company" }
+                    new Company() { Id = companyId, Name = "Nice Company", CreatedAt = DateTime.Now.ToString() }
                 );
             }
             else

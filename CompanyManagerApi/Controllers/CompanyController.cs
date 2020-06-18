@@ -56,10 +56,10 @@ namespace CompanyManagerApi.Controllers
             return await _service.GetEntityByIdAsync(id);
         }
 
-        [HttpPut("{id}")]
-        public async Task<HttpStatusCode> Update(CompanyInputData inputData, Guid id)
+        [HttpPut]
+        public async Task<HttpStatusCode> Update(CompanyViewData inputData)
         {
-            var updateEntityOutcome = await _service.UpdateEntityAsync(inputData, id);
+            var updateEntityOutcome = await _service.UpdateEntityAsync(inputData);
 
             return _resultFactory.Create(updateEntityOutcome);
         }

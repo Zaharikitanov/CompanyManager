@@ -1,6 +1,7 @@
 ﻿using CompanyManagerApi.Factories.Interfaces;
 using CompanyManagerApi.Models.Database;
 using CompanyManagerApi.Models.View;
+using System;
 
 namespace CompanyManagerApi.Factories
 {
@@ -10,7 +11,8 @@ namespace CompanyManagerApi.Factories
         {
             return new Company
             {
-                Name = viewData.Name
+                Name = viewData.Name,
+                CreatedAt = DateTime.Now.ToString()
             };
         }
     }

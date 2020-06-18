@@ -16,11 +16,11 @@ const AdminHome = () => {
                     <i className="fas fa-search" />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input placeholder="Търси Фирма" type="text" />
+                <Input placeholder="Search by name" type="text" />
               </InputGroup>
             </FormGroup>
           </Form>
-          <RedirectButton className="optileader-teal-background white-font-color" buttonText="Добави Фирма" url="/add-company" />
+          <RedirectButton className="optileader-teal-background white-font-color" buttonText="Add Company" url="/add-company" />
         </Card>
         <ApiResource url={`company`}>
           {(companies: CompanyListItem[]) => <>

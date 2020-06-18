@@ -25,7 +25,13 @@ namespace CompanyManagerApi.Repositories
         public async Task<List<CompanyViewData>> GetEntitiesListAsync()
         {
             var entities = await _dbContext.Companies
-                .Select(e => _mapper.MapToViewModel(e)).ToListAsync();
+                .Select(e => new CompanyViewData
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    CreatedAt = e.CreatedAt,
+                    OfficesAmount = e.Offices.Where(o => o.CompanyId == e.Id).Count()
+                }).ToListAsync();
 
             return entities;
         }

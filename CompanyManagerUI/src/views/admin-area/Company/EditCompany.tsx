@@ -9,7 +9,7 @@ const EditCompany = (props: CompanyDetailsData) => {
   const {objectData} = useContext(UserContext);
   
   return <>
-    <ApiResource url={`company/${objectData.getObjectData}/details`}>
+    <ApiResource url={`company/${objectData.getObjectData}`}>
           {(companyDetailsData: CompanyDetailsData) => <>
             <CompanyTemplate viewType={TemplateView.Edit} templateData={companyDetailsData}/>
           </>}

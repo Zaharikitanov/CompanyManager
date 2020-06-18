@@ -16,6 +16,6 @@ namespace CompanyManagerApi.Services.Interfaces
         Task<List<CompanyViewData>> GetAllEntitiesAsync();
         Task<CompanyViewData> GetEntityByIdAsync(Guid entityId);
         Task<Page<CompanyViewData>> GetPaginatedEntitiesAsync(int pageSize, int currentPage, string searchText, CompanySortingOptions sortBy);
-        Task<EntityActionOutcome> UpdateEntityAsync(CompanyInputData viewData, Guid id);
+        Task<EntityActionOutcome> UpdateEntityAsync(CompanyViewData viewData);
     }
 }
