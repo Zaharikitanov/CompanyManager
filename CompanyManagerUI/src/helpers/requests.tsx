@@ -2,24 +2,6 @@ import wretch, { WretcherError } from "wretch"
 
 const serverAddress = "https://localhost:5001/api";
 
-// export const UpdateItem = (data, controller) => {
-
-//     fetch(`${serverAddress}/${controller}`, {
-//         method: 'PUT', // or 'POST'
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(data),
-//         })
-//         .then((response) => response.json())
-//         .then((data) => {
-//         console.log('Success:', data);
-//         })
-//         .catch((error) => {
-//         console.error('Error:', error);
-//     });
-// }
-
 export const CreateItem = (data, controller) => {
     wretch(`${serverAddress}/${controller}`)
         .json(data)
