@@ -25,7 +25,11 @@ namespace CompanyManagerApi.Repositories
         public async Task<List<OfficeViewData>> GetEntitiesListAsync()
         {
             var entities = await _dbContext.Offices
-                .Select(e => _mapper.MapToViewModel(e)).ToListAsync();
+                .Select(e => new OfficeViewData {
+                    Id = e.Id,
+                    CompanyId = e.CompanyId,
+
+                }).ToListAsync();
 
             return entities;
         }
@@ -42,8 +46,8 @@ namespace CompanyManagerApi.Repositories
         {
             var filters = new Filters<OfficeViewData>();
             filters.Add(!string.IsNullOrEmpty(searchText), x => x.City.Contains(searchText));
-            filters.Add(!string.IsNullOrEmpty(searchText), x => x.Country.Contains(searchText));
-            filters.Add(!string.IsNullOrEmpty(searchText), x => x.Street.Contains(searchText));
+            //filters.Add(!string.IsNullOrEmpty(searchText), x => x.Country.Contains(searchText));
+            //filters.Add(!string.IsNullOrEmpty(searchText), x => x.Street.Contains(searchText));
 
             var sorts = new Sorts<OfficeViewData>();
             sorts.Add(sortBy == OfficeSortingOptions.City, x => x.City);

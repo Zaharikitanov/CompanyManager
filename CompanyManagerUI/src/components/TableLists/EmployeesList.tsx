@@ -57,7 +57,7 @@ console.log('reloaded');
         <tbody>
           {props.listData.map((data, index) =>
             <tr className="text-center" key={index} >
-              <td><RedirectButton className="optileader-teal-background white-font-color" buttonText="Детайли" url={AdminRoute.EmployeeDetails} dataObjectId={data.id}/></td>
+              <td><RedirectButton className="teal-background white-font-color" buttonText="Детайли" url={AdminRoute.EmployeeDetails} dataObjectId={data.id}/></td>
               <td className="f-size-16">{data.employeeName}</td>
               <td className="f-size-16">{data.employeeEmail}</td>
               <td className="f-size-16">{data.ordersCount}</td>

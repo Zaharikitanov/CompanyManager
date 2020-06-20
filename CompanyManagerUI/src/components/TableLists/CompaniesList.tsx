@@ -36,7 +36,7 @@ const CompaniesList = (props: CompaniesListProps): JSX.Element => {
                 <tr className="text-center" key={index} >
                   <td>
                     <RedirectButton 
-                      className="optileader-teal-background white-font-color" 
+                      className="teal-background white-font-color" 
                       buttonText="Details" 
                       url={AdminRoute.CompanyDetails}
                       dataObjectId={data.id}/>

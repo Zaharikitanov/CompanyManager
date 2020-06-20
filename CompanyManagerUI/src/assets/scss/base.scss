@@ -1,10 +1,10 @@
-$optileaderTeal: #11CDEF;
+$teal: #11CDEF;
 $black: #000;
 $white: #fff;
 $silver: #c1c1c1;
 
-.optileader-teal-background {
-    background-color: $optileaderTeal;
+.teal-background {
+    background-color: $teal;
 
     &:hover, &:active {
         background-color: #21dcfe !important;
@@ -12,8 +12,8 @@ $silver: #c1c1c1;
     }
 }
 
-.optileader-teal-color {
-    color: $optileaderTeal;
+.teal-color {
+    color: $teal;
 }
 
 .silver-background {
@@ -67,7 +67,7 @@ $silver: #c1c1c1;
         border: 1px solid transparent !important;
     }
     .btn-primary.active {
-        background-color: $optileaderTeal !important;
+        background-color: $teal !important;
     }
 }
 
@@ -125,7 +125,7 @@ td.f-size-16, th.f-size-16, .f-size-16 {
     background-color: $white;
 
     th, tr, td {
-        border: 2px solid $optileaderTeal;
+        border: 2px solid $teal;
         padding: 1.25rem !important;
     }
 

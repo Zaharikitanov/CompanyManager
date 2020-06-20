@@ -150,7 +150,7 @@ const FacilityTemplate = (props: FacilityTemplateProps): JSX.Element => {
         <h6 className="heading-small f-size-16">
           Детайли на обекта
           {props.viewType === TemplateView.View && 
-            <RedirectButton className="optileader-teal-background white-font-color ml-4" buttonText="Редактирай" url={AdminRoute.EditFacility} dataObjectId={inputData.id}/>
+            <RedirectButton className="teal-background white-font-color ml-4" buttonText="Редактирай" url={AdminRoute.EditFacility} dataObjectId={inputData.id}/>
           }
         </h6>
         <Row className="mt-4">

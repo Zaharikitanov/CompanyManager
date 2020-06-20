@@ -21,7 +21,7 @@ const Employees = () => {
             </InputGroup>
           </FormGroup>
         </Form>
-        <RedirectButton className="optileader-teal-background white-font-color" buttonText="Добави Служител" url={AdminRoute.AddCompany}/>
+        <RedirectButton className="teal-background white-font-color" buttonText="Добави Служител" url={AdminRoute.AddCompany}/>
       </Card>
 
       

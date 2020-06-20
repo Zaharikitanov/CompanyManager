@@ -20,7 +20,7 @@ const AdminHome = () => {
               </InputGroup>
             </FormGroup>
           </Form>
-          <RedirectButton className="optileader-teal-background white-font-color" buttonText="Add Company" url="/add-company" />
+          <RedirectButton className="teal-background white-font-color" buttonText="Add Company" url="/add-company" />
         </Card>
         <ApiResource url={`company`}>
           {(companies: CompanyListItem[]) => <>

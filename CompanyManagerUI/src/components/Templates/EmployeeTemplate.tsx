@@ -188,7 +188,7 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
         <h6 className="heading-small f-size-16">
           Детайли на служителя
           {props.viewType === TemplateView.View &&
-            <RedirectButton className="optileader-teal-background white-font-color ml-4" buttonText="Редактирай" url={AdminRoute.EditEmployee} />
+            <RedirectButton className="teal-background white-font-color ml-4" buttonText="Редактирай" url={AdminRoute.EditEmployee} />
           }
         </h6>
 
@@ -206,7 +206,7 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
                 </>
                 :
                 <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                  <DropdownToggle caret className="px-5 optileader-teal-background white-font-color">
+                  <DropdownToggle caret className="px-5 teal-background white-font-color">
                   {props.viewType === TemplateView.Edit
                     ? <>{employeeData.role}</>
                     : <>{employeeData.role ? employeeData.role : "Избери"}</>

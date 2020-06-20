@@ -53,7 +53,13 @@ namespace CompanyManagerApi.Repositories
             sorts.Add(sortBy == CompanySortingOptions.Name, x => x.Name);
 
             return await _dbContext.Companies
-                .Select(e => _mapper.MapToViewModel(e))
+                .Select(e => new CompanyViewData
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    CreatedAt = e.CreatedAt,
+                    OfficesAmount = e.Offices.Where(o => o.CompanyId == e.Id).Count()
+                })
                 .PaginateAsync(currentPage, pageSize, sorts, filters);
         }
     }

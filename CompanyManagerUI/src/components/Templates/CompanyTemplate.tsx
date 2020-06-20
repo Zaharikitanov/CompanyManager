@@ -145,7 +145,7 @@ const CompanyTemplate = (props?: CompanyTemplateProps): JSX.Element => {
         <h6 className="heading-small f-size-16">
           Company Details
           {props.viewType === TemplateView.View && 
-            <RedirectButton className="optileader-teal-background white-font-color ml-4" buttonText="Edit" url={AdminRoute.EditCompany} />
+            <RedirectButton className="teal-background white-font-color ml-4" buttonText="Edit" url={AdminRoute.EditCompany} />
           }
         </h6>
         {props 
