@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CompanyManagerApi.DatabaseContext;
+﻿using CompanyManagerApi.DatabaseContext;
 using CompanyManagerApi.Mappers.Interfaces;
-using CompanyManagerApi.Models.SortingOptions;
+using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using CompanyManagerApi.Repositories.Interfaces;
 using EntityFrameworkPaginateCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CompanyManagerApi.Repositories
 {
@@ -42,17 +42,33 @@ namespace CompanyManagerApi.Repositories
             return entity;
         }
 
-        public async Task<Page<OfficeViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, OfficeSortingOptions sortBy)
+        public async Task<Page<OfficeViewData>> GetPaginatedResultsAsync(
+            int pageSize, 
+            int currentPage, 
+            string searchText, 
+            OfficeSearchOptions sortBy,
+            OfficeSearchOptions searchBy)
         {
             var filters = new Filters<OfficeViewData>();
-            filters.Add(!string.IsNullOrEmpty(searchText), x => x.City.Contains(searchText));
-            //filters.Add(!string.IsNullOrEmpty(searchText), x => x.Country.Contains(searchText));
-            //filters.Add(!string.IsNullOrEmpty(searchText), x => x.Street.Contains(searchText));
+            
+            switch (searchBy)
+            {
+                case OfficeSearchOptions.Country:
+                    filters.Add(!string.IsNullOrEmpty(searchText), x => x.Country.Contains(searchText));
+                    break;
+                case OfficeSearchOptions.Street:
+                    filters.Add(!string.IsNullOrEmpty(searchText), x => x.Street.Contains(searchText));
+                    break;
+                case OfficeSearchOptions.City:
+                default:
+                    filters.Add(!string.IsNullOrEmpty(searchText), x => x.City.Contains(searchText));
+                    break;
+            }
 
             var sorts = new Sorts<OfficeViewData>();
-            sorts.Add(sortBy == OfficeSortingOptions.City, x => x.City);
-            sorts.Add(sortBy == OfficeSortingOptions.Country, x => x.Country);
-            sorts.Add(sortBy == OfficeSortingOptions.Street, x => x.Street);
+            sorts.Add(sortBy == OfficeSearchOptions.City, x => x.City);
+            sorts.Add(sortBy == OfficeSearchOptions.Country, x => x.Country);
+            sorts.Add(sortBy == OfficeSearchOptions.Street, x => x.Street);
 
             return await _dbContext.Offices
                 .Select(e => _mapper.MapToViewModel(e))

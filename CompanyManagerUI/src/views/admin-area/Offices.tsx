@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Button, ButtonDropdown, Card, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, InputGroupAddon, InputGroupText, Input, InputGroup } from "reactstrap";
-import EmployeesList from '../../components/TableLists/EmployeesList';
+import FacilitiesList, { FacilityListItem } from '../../components/TableLists/FacilitiesList';
 import { GetPaginatedItems } from "../../helpers/requests";
 
-export enum EmployeeSearchOptions {
-  FirstName = "FirstName",
-  LastName = "LastName"
+export enum OfficeSearchOptions {
+  Country = "Country",
+  City = "City",
+  Street = "Street"
 }
 
-const Employees = () => {
+const Offices = (props: FacilityListItem[]) => {
 
   const [data, setData] = useState<any>();
   const [search, setSearch] = useState("");
   const [dropdownOpen, setOpen] = useState(false);
-  const [searchBy, setSearchBy] = useState(EmployeeSearchOptions.FirstName);
+  const [searchBy, setSearchBy] = useState(OfficeSearchOptions.City);
   const toggle = () => setOpen(!dropdownOpen);
-  let searchOptionsArray = Object.values(EmployeeSearchOptions);
+  let searchOptionsArray = Object.values(OfficeSearchOptions);
 
   const loadData = (apiUrl: string) => {
     GetPaginatedItems(apiUrl)
@@ -26,11 +27,11 @@ const Employees = () => {
   }
 
   useEffect(() => {
-    loadData("employee/search");
+    loadData("office/search");
   },[]);
 
   const getResults = () => {
-    loadData(`employee/search?searchText=${search}&searchBy=${searchBy}`);
+    loadData(`office/search?searchText=${search}&searchBy=${searchBy}`);
   }
 
   return (
@@ -52,11 +53,11 @@ const Employees = () => {
         <span className="d-flex align-items-center mr-2">By</span>
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle caret className="px-2 w-100px teal-background white-font-color">
-            {EmployeeSearchOptions[searchBy]}
+            {OfficeSearchOptions[searchBy]}
           </DropdownToggle>
           <DropdownMenu>
             {searchOptionsArray.map((data, index) =>
-              <DropdownItem key={index} onClick={() => setSearchBy(EmployeeSearchOptions[`${data}`])}>{data}</DropdownItem>
+              <DropdownItem key={index} onClick={() => setSearchBy(OfficeSearchOptions[`${data}`])}>{data}</DropdownItem>
             )}
           </DropdownMenu>
         </ButtonDropdown>
@@ -64,13 +65,13 @@ const Employees = () => {
       </Card>
       {data 
         ?
-        <EmployeesList listData={data} />
+        <FacilitiesList listData={data} />
         :
         <h1>Loading...</h1>
       }
       
     </div>
-  ); 
+  );
 }
 
-export default Employees;
+export default Offices;

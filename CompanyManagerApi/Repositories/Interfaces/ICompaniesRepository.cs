@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CompanyManagerApi.Models.SortingOptions;
+﻿using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using EntityFrameworkPaginateCore;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CompanyManagerApi.Repositories.Interfaces
 {
@@ -11,6 +11,6 @@ namespace CompanyManagerApi.Repositories.Interfaces
     {
         Task<List<CompanyViewData>> GetEntitiesListAsync();
         Task<CompanyViewData> GetEntityDetailsAsync(Guid entityId);
-        Task<Page<CompanyViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, CompanySortingOptions sortBy);
+        Task<Page<CompanyViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, CompanySearchOptions sortBy);
     }
 }

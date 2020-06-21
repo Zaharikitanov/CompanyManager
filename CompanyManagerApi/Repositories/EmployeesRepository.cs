@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CompanyManagerApi.DatabaseContext;
+﻿using CompanyManagerApi.DatabaseContext;
 using CompanyManagerApi.Mappers.Interfaces;
-using CompanyManagerApi.Models.SortingOptions;
+using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using CompanyManagerApi.Repositories.Interfaces;
 using EntityFrameworkPaginateCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CompanyManagerApi.Repositories
 {
@@ -38,15 +38,29 @@ namespace CompanyManagerApi.Repositories
             return entity;
         }
 
-        public async Task<Page<EmployeeViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, EmployeeSortingOptions sortBy)
+        public async Task<Page<EmployeeViewData>> GetPaginatedResultsAsync(
+            int pageSize, 
+            int currentPage, 
+            string searchText, 
+            EmployeeSearchOptions sortBy,
+            EmployeeSearchOptions searchBy)
         {
             var filters = new Filters<EmployeeViewData>();
-            filters.Add(!string.IsNullOrEmpty(searchText), x => x.FirstName.Contains(searchText));
-            filters.Add(!string.IsNullOrEmpty(searchText), x => x.LastName.Contains(searchText));
+
+            switch (searchBy)
+            {
+                case EmployeeSearchOptions.LastName:
+                    filters.Add(!string.IsNullOrEmpty(searchText), x => x.LastName.Contains(searchText));
+                    break;
+                case EmployeeSearchOptions.FirstName:
+                default:
+                    filters.Add(!string.IsNullOrEmpty(searchText), x => x.FirstName.Contains(searchText));
+                    break;
+            }
 
             var sorts = new Sorts<EmployeeViewData>();
-            sorts.Add(sortBy == EmployeeSortingOptions.FirstName, x => x.FirstName);
-            sorts.Add(sortBy == EmployeeSortingOptions.LastName, x => x.LastName);
+            sorts.Add(sortBy == EmployeeSearchOptions.FirstName, x => x.FirstName);
+            sorts.Add(sortBy == EmployeeSearchOptions.LastName, x => x.LastName);
 
             return await _dbContext.Employees
                 .Select(e => _mapper.MapToViewModel(e))

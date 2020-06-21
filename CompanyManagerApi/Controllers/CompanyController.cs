@@ -1,6 +1,6 @@
 ﻿using CompanyManagerApi.Factories.Interfaces;
 using CompanyManagerApi.Models.Database;
-using CompanyManagerApi.Models.SortingOptions;
+using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using CompanyManagerApi.Services.Interfaces;
 using EntityFrameworkPaginateCore;
@@ -44,7 +44,7 @@ namespace CompanyManagerApi.Controllers
             int pageSize = 10,
             int currentPage = 1,
             string searchText = "",
-            CompanySortingOptions sortBy = CompanySortingOptions.Name
+            CompanySearchOptions sortBy = CompanySearchOptions.Name
             )
         {
             return await _service.GetPaginatedEntitiesAsync(pageSize, currentPage, searchText, sortBy);

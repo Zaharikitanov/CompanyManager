@@ -1,6 +1,6 @@
 ﻿using CompanyManagerApi.Factories.Interfaces;
 using CompanyManagerApi.Models.Database;
-using CompanyManagerApi.Models.SortingOptions;
+using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using CompanyManagerApi.Services.Interfaces;
 using EntityFrameworkPaginateCore;
@@ -44,10 +44,11 @@ namespace CompanyManagerApi.Controllers
             int pageSize = 10,
             int currentPage = 1,
             string searchText = "",
-            OfficeSortingOptions sortBy = OfficeSortingOptions.City
+            OfficeSearchOptions sortBy = OfficeSearchOptions.City,
+            OfficeSearchOptions searchBy = OfficeSearchOptions.City
             )
         {
-            return await _service.GetPaginatedEntitiesAsync(pageSize, currentPage, searchText, sortBy);
+            return await _service.GetPaginatedEntitiesAsync(pageSize, currentPage, searchText, sortBy, searchBy);
         }
 
         [HttpGet("{id}")]

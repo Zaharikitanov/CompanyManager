@@ -33,20 +33,16 @@ type EmployeeTemplateProps = {
 const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
 
   const inputData = props.templateData;
+  const [dropdownOpen, setOpen] = useState(false);
+  const toggle = () => setOpen(!dropdownOpen);
+  const [employeeData, setEmployeeData] = useState({} as EmployeeDetailsData);
+  let employeeRolesArray = Object.values(EmployeeRole);
   
   const breadcrumbs: Array<BreadCrumbItem> = [
       {label: "Фирма", url: AdminRoute.CompanyDetails, objectId: inputData.companyId},
-      {label: "Обект", url: AdminRoute.FacilityDetails, objectId: inputData.facilityId},
+      {label: "Обект", url: AdminRoute.OfficeDetails, objectId: inputData.facilityId},
       {label: "Служител"}
   ];
-
-  let employeeRolesArray = Object.values(EmployeeRole);
-
-  const [dropdownOpen, setOpen] = useState(false);
-
-  const toggle = () => setOpen(!dropdownOpen);
-
-  const [employeeData, setEmployeeData] = useState({} as EmployeeDetailsData);
 
   const employeeDetails = [
     { label: "Име", value: undefinedChecker(inputData, "name"), newValue: (newValue) => setEmployeeData({ ...employeeData, name: newValue}) },
@@ -163,13 +159,13 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
     switch (props.viewType) {
       case TemplateView.CreateNew: {
         return <>
-          <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.FacilityDetails} callback={saveDataObject} dataObjectId={inputData.facilityId}/>
+          <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.OfficeDetails} callback={saveDataObject} dataObjectId={inputData.facilityId}/>
         </>
       }
       case TemplateView.Edit: {
         return <>
-          <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.FacilityDetails} callback={updateDataObject} dataObjectId={inputData.facilityId}/>
-          <RedirectButton buttonColor="danger" buttonText="Изтрий Служителя" url={AdminRoute.FacilityDetails} callback={deleteDataObject} dataObjectId={inputData.facilityId}/>
+          <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.facilityId}/>
+          <RedirectButton buttonColor="danger" buttonText="Изтрий Служителя" url={AdminRoute.OfficeDetails} callback={deleteDataObject} dataObjectId={inputData.facilityId}/>
         </>
       }
       case TemplateView.View: {

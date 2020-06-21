@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CompanyManagerApi.DatabaseContext;
+﻿using CompanyManagerApi.DatabaseContext;
 using CompanyManagerApi.Mappers.Interfaces;
-using CompanyManagerApi.Models.SortingOptions;
+using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using CompanyManagerApi.Repositories.Interfaces;
 using EntityFrameworkPaginateCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CompanyManagerApi.Repositories
 {
@@ -44,13 +44,13 @@ namespace CompanyManagerApi.Repositories
             return entity;
         }
 
-        public async Task<Page<CompanyViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, CompanySortingOptions sortBy)
+        public async Task<Page<CompanyViewData>> GetPaginatedResultsAsync(int pageSize, int currentPage, string searchText, CompanySearchOptions sortBy)
         {
             var filters = new Filters<CompanyViewData>();
             filters.Add(!string.IsNullOrEmpty(searchText), x => x.Name.Contains(searchText));
 
             var sorts = new Sorts<CompanyViewData>();
-            sorts.Add(sortBy == CompanySortingOptions.Name, x => x.Name);
+            sorts.Add(sortBy == CompanySearchOptions.Name, x => x.Name);
 
             return await _dbContext.Companies
                 .Select(e => new CompanyViewData

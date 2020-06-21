@@ -11,14 +11,14 @@ export type FacilityViewModel = {
   employees: EmployeeListItem[];
 }
 
-const FacilityDetails = (props): JSX.Element => {
+const OfficeDetails = (props): JSX.Element => {
 
   const { objectData } = useContext(UserContext);
 
   let reload: boolean = false;
 
   return <>
-    <ApiResource url={`facility/${objectData.getObjectData}`} reloadData={reload}>
+    <ApiResource url={`office/${objectData.getObjectData}`} reloadData={reload}>
         {(facilityData: FacilityViewModel) => 
         <>
           <FacilityTemplate viewType={TemplateView.View} templateData={facilityData.facilityDetails} />
@@ -30,4 +30,4 @@ const FacilityDetails = (props): JSX.Element => {
   </>
 }
 
-export default FacilityDetails;
+export default OfficeDetails;

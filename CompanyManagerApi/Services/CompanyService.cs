@@ -1,7 +1,7 @@
 ﻿using CompanyManagerApi.Factories.Interfaces;
 using CompanyManagerApi.Models;
 using CompanyManagerApi.Models.Database;
-using CompanyManagerApi.Models.SortingOptions;
+using CompanyManagerApi.Models.SearchOptions;
 using CompanyManagerApi.Models.View;
 using CompanyManagerApi.Repositories.Interfaces;
 using CompanyManagerApi.Services.Interfaces;
@@ -67,7 +67,11 @@ namespace CompanyManagerApi.Services
             return await _repository.GetEntitiesListAsync();
         }
 
-        public async Task<Page<CompanyViewData>> GetPaginatedEntitiesAsync(int pageSize, int currentPage, string searchText, CompanySortingOptions sortBy)
+        public async Task<Page<CompanyViewData>> GetPaginatedEntitiesAsync(
+            int pageSize, 
+            int currentPage, 
+            string searchText, 
+            CompanySearchOptions sortBy)
         {
             return await _repository.GetPaginatedResultsAsync(pageSize, currentPage, searchText, sortBy);
         }

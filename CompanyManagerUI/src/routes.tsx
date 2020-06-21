@@ -7,14 +7,14 @@ import Maps from "./views/examples/Maps.jsx";
 //admin pages
 import Companies from "./views/admin-area/Companies";
 import Employees from "./views/admin-area/Employees";
-import Facilities from "./views/admin-area/Facilities";
+import Offices from "./views/admin-area/Offices";
 import AdminHome from "./views/admin-area/AdminHome";
 import AddCompany from "./views/admin-area/Company/AddCompany";
 import CompanyDetails from "./views/admin-area/Company/CompanyDetails";
 import EditCompany from "./views/admin-area/Company/EditCompany";
 import AddFacility from "./views/admin-area/Facility/AddFacility";
 import EditFacility from "./views/admin-area/Facility/EditFacility";
-import FacilityDetails from "./views/admin-area/Facility/FacilityDetails";
+import OfficeDetails from "./views/admin-area/Facility/OfficeDetails";
 import AddEmployee from "./views/admin-area/Employee/AddEmployee";
 import EditEmployee from "./views/admin-area/Employee/EditEmployee";
 import EmployeeDetails from "./views/admin-area/Employee/EmployeeDetails";
@@ -26,23 +26,17 @@ import { UserRole } from './components/enums/UserRole';
 export enum AdminRoute {
   Index = "/",
   Companies = "/companies",
-  Facilities = "/facilities",
+  Offices = "/offices",
   Employees = "/employees",
   AddCompany = "/add-company",
   CompanyDetails = "/company-details",
   EditCompany = "/edit-company",
-  AddFacility = "/add-facility",
-  EditFacility = "/edit-facility",
-  FacilityDetails = "/facility-details",
+  AddFacility = "/add-office",
+  EditFacility = "/edit-office",
+  OfficeDetails = "/office-details",
   AddEmployee = "/add-employee",
   EditEmployee = "/edit-employee",
   EmployeeDetails = "/employee-details",
-  Customers = "/all-customers",
-}
-
-export enum SharedRoute {
-  EditClient = "/edit-customer",
-  ClientDetails = "/customer-details",
 }
 
 var AdministratorRoutes = [
@@ -53,10 +47,16 @@ var AdministratorRoutes = [
     component: Companies,
   },
   {
-    path: AdminRoute.Facilities,
+    path: AdminRoute.Offices,
     name: "Offices",
     icon: "fas fa-atlas text-blue",
-    component: Facilities,
+    component: Offices,
+  },
+  {
+    path: AdminRoute.Employees,
+    name: "Employees",
+    icon: "fas fa-atlas text-blue",
+    component: Employees,
   },
   {
     path: AdminRoute.AddCompany,
@@ -84,9 +84,9 @@ var AdministratorRoutes = [
     component: EditFacility,
   },
   {
-    path: AdminRoute.FacilityDetails,
+    path: AdminRoute.OfficeDetails,
     name: "Details",
-    component: FacilityDetails,
+    component: OfficeDetails,
   },
   {
     path: AdminRoute.AddEmployee,

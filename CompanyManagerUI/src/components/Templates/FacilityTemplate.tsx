@@ -128,7 +128,7 @@ const FacilityTemplate = (props: FacilityTemplateProps): JSX.Element => {
       } 
       case TemplateView.Edit: { 
         return <>
-         <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.FacilityDetails} callback={updateDataObject} dataObjectId={inputData.id}/>
+         <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.id}/>
          <RedirectButton buttonColor="danger" buttonText="Изтрий Обекта" url={AdminRoute.CompanyDetails} callback={deleteDataObject} dataObjectId={inputData.companyId}/>
         </> 
       } 

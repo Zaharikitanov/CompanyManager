@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, FormGroup, InputGroupAddon, InputGroupText, Input, InputGroup, Button } from "reactstrap";
 import RedirectButton from '../../components/Buttons/RedirectButton';
-import CompaniesList, { CompanyListItem } from '../../components/TableLists/CompaniesList';
+import CompaniesList from '../../components/TableLists/CompaniesList';
 import { GetPaginatedItems } from "../../helpers/requests";
 import { AdminRoute } from "../../routes";
 
@@ -15,7 +15,6 @@ const Companies = () => {
         .catch(error => console.log(error))
         .then((json) => {
             setData(json.results);
-            // console.log(json);
         });
   }
 
@@ -26,7 +25,7 @@ const Companies = () => {
   const getResults = () => {
     loadData(`company/search?searchText=${search}`);
   }
-// console.log(data);
+
   return (
     <div className="m-4">
       <Card className="p-4 d-flex-none align-middle w-100">

@@ -33,7 +33,7 @@ const FacilitiesList = (props: FacilitiesListProps): JSX.Element => {
         <tbody>
           {props.listData.map((data, index) =>
             <tr className="text-center" key={index} >
-              <td><RedirectButton className="teal-background white-font-color" buttonText="Details" url={AdminRoute.FacilityDetails} dataObjectId={data.id}/></td>
+              <td><RedirectButton className="teal-background white-font-color" buttonText="Details" url={AdminRoute.OfficeDetails} dataObjectId={data.id}/></td>
               <td className="f-size-16">{data.country}</td>
               <td className="f-size-16">{data.city}</td>
               <td className="f-size-16">{data.street} {data.streetNumber}</td>
