@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import FacilityTemplate, { FacilityDetailsData } from '../../../components/Templates/FacilityTemplate';
+import OfficeTemplate, { OfficeDetailsData } from '../../../components/Templates/OfficeTemplate';
 import { TemplateView } from '../../../components/enums/TemplateView';
 import ApiResource from '../../../helpers/ApiResource';
 import { UserContext } from '../../../userContext';
 
-const EditFacility = (props: FacilityDetailsData) => {
+const EditFacility = (props: OfficeDetailsData) => {
 
   const {objectData} = useContext(UserContext);
 
   return <>
-      <ApiResource url={`facility/${objectData.getObjectData}/details`}>
-          {(facilityDetailsData: FacilityDetailsData) => <>
-            <FacilityTemplate viewType={TemplateView.Edit} templateData={facilityDetailsData}/>
+      <ApiResource url={`office/${objectData.getObjectData}`}>
+          {(facilityDetailsData: OfficeDetailsData) => <>
+            <OfficeTemplate viewType={TemplateView.Edit} templateData={facilityDetailsData}/>
           </>}
       </ApiResource>
   </>

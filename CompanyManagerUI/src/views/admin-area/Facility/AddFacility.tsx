@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import FacilityTemplate, { FacilityDetailsData } from '../../../components/Templates/FacilityTemplate';
+import OfficeTemplate, { OfficeDetailsData } from '../../../components/Templates/OfficeTemplate';
 import { TemplateView } from '../../../components/enums/TemplateView';
 import { UserContext } from '../../../userContext';
 
@@ -7,10 +7,10 @@ const AddFacility = (props) => {
 
   const {objectData} = useContext(UserContext);
 
-  const companyId: FacilityDetailsData = {companyId: objectData.getObjectData}
+  const companyId: OfficeDetailsData = {companyId: objectData.getObjectData}
 
   return <>
-    <FacilityTemplate viewType={TemplateView.CreateNew} templateData={companyId}/>
+    <OfficeTemplate viewType={TemplateView.CreateNew} templateData={companyId}/>
   </>
 }
 

@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Card } from "reactstrap";
 import EmployeeList, { EmployeeListItem } from '../../../components/TableLists/EmployeesList';
-import FacilityTemplate, { FacilityDetailsData } from '../../../components/Templates/FacilityTemplate';
+import OfficeTemplate, { OfficeDetailsData } from '../../../components/Templates/OfficeTemplate';
 import { TemplateView } from '../../../components/enums/TemplateView';
 import { UserContext } from "../../../userContext";
 import ApiResource from "../../../helpers/ApiResource";
 
 export type FacilityViewModel = {
-  facilityDetails : FacilityDetailsData;
+  facilityDetails : OfficeDetailsData;
   employees: EmployeeListItem[];
 }
 
@@ -18,12 +18,12 @@ const OfficeDetails = (props): JSX.Element => {
   let reload: boolean = false;
 
   return <>
-    <ApiResource url={`office/${objectData.getObjectData}`} reloadData={reload}>
-        {(facilityData: FacilityViewModel) => 
+    <ApiResource url={`office/${objectData.getObjectData}`}>
+        {(facilityData: OfficeDetailsData) => 
         <>
-          <FacilityTemplate viewType={TemplateView.View} templateData={facilityData.facilityDetails} />
+          <OfficeTemplate viewType={TemplateView.View} templateData={facilityData} />
           <Card className="mt-4">
-            <EmployeeList listData={facilityData.employees} />
+            {/* <EmployeeList listData={facilityData.employees} /> */}
           </Card>
         </>}
     </ApiResource>

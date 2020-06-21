@@ -27,12 +27,6 @@ namespace CompanyManagerApi.Validators
                 .WithMessage("Required")
                 .MaximumLength(60);
 
-            RuleFor(entity => entity.IsHeadquarters)
-                .NotEmpty()
-                .WithMessage("Required")
-                .NotNull()
-                .WithMessage("Required");
-
             RuleFor(entity => entity.Street)
                 .NotEmpty()
                 .WithMessage("Required")
