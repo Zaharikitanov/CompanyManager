@@ -14,6 +14,7 @@ namespace CompanyManagerApi.Factories
                 FirstName = viewData.FirstName,
                 LastName = viewData.LastName,
                 OfficeId = viewData.OfficeId,
+                CompanyId = viewData.CompanyId,
                 ProfileImage = viewData.ProfileImage,
                 Salary = viewData.Salary,
                 VacationDays = viewData.VacationDays,

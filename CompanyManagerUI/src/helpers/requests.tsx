@@ -26,7 +26,6 @@ export const GetPaginatedItems = async (controller: string, searchCriteria?) => 
     return await wretch(`${serverAddress}/${controller}`)
         .get()
         .json();
-    
 }
 
 export const DeleteItem = (controller: string) => {

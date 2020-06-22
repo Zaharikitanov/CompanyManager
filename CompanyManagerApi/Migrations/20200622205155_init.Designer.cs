@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyManagerApi.Migrations
 {
     [DbContext(typeof(CompanyManagerContext))]
-    [Migration("20200622180804_initial")]
-    partial class initial
+    [Migration("20200622205155_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,8 @@ namespace CompanyManagerApi.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CompanyId");
 
                     b.Property<int>("ExperienceLevel");
 

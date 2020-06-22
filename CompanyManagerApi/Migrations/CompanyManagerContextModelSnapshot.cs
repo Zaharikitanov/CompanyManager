@@ -38,6 +38,8 @@ namespace CompanyManagerApi.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid>("CompanyId");
+
                     b.Property<int>("ExperienceLevel");
 
                     b.Property<string>("FirstName");

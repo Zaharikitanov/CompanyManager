@@ -33,7 +33,24 @@ namespace CompanyManagerApi.Repositories
         public async Task<EmployeeViewData> GetEntityDetailsAsync(Guid entityId)
         {
             var entity = await _dbContext.Employees.Where(e => e.Id == entityId)
-                .Select(e => _mapper.MapToViewModel(e)).SingleOrDefaultAsync();
+                .Select(e => new EmployeeViewData {
+                    Id = e.Id,
+                    FirstName = e.FirstName,
+                    LastName = e.LastName,
+                    StartingDate = e.StartingDate,
+                    Salary = e.Salary,
+                    VacationDays = e.VacationDays,
+                    ExperienceLevel = e.ExperienceLevel,
+                    ProfileImage = e.ProfileImage,
+                    OfficeId = e.OfficeId,
+                    Offices = _dbContext.Offices.Where(o => o.CompanyId == e.CompanyId).Select(o => new OfficeViewData {
+                        Id = o.Id,
+                        City = o.City,
+                        Street = o.Street,
+                        StreetNumber = o.StreetNumber
+                    })
+                    .ToList()
+                }).SingleOrDefaultAsync();
 
             return entity;
         }

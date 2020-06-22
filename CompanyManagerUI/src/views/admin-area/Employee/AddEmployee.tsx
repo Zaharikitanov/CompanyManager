@@ -6,8 +6,7 @@ import { UserContext } from '../../../userContext';
 const AddEmployee = (props) => {
 
   const {objectData} = useContext(UserContext);
-
-  const officeId: EmployeeDetailsData = {officeId: objectData.getObjectData}
+  const officeId: EmployeeDetailsData = {officeId: objectData.getObjectData.officeId}
   
   return <>
     <EmployeeTemplate viewType={TemplateView.CreateNew} templateData={officeId}/>

@@ -28,5 +28,8 @@ namespace CompanyManagerApi.Models.View
 
         [JsonProperty("officeId")]
         public Guid OfficeId { get; set; }
+
+        [JsonProperty("companyId")]
+        public Guid CompanyId { get; set; }
     }
 }

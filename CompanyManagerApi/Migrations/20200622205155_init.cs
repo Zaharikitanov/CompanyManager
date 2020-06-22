@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CompanyManagerApi.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,8 @@ namespace CompanyManagerApi.Migrations
                     VacationDays = table.Column<int>(nullable: false),
                     ExperienceLevel = table.Column<int>(nullable: false),
                     ProfileImage = table.Column<string>(nullable: true),
-                    OfficeId = table.Column<Guid>(nullable: false)
+                    OfficeId = table.Column<Guid>(nullable: false),
+                    CompanyId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -55,6 +55,7 @@ namespace CompanyManagerApi.DatabaseContext
                 System.Console.WriteLine("Adding employees - seeding...");
                 context.Employees.AddRange(
                     new Employee() {
+                        CompanyId = companyId,
                         OfficeId = officeId,
                         FirstName = "Horst",
                         LastName = "Fuchs",
@@ -65,6 +66,7 @@ namespace CompanyManagerApi.DatabaseContext
                         ProfileImage = "profile_image.jpeg"
                     },
                     new Employee() {
+                        CompanyId = companyId,
                         OfficeId = officeId,
                         FirstName = "Peter",
                         LastName = "Klaus",

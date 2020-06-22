@@ -20,6 +20,8 @@ namespace CompanyManagerApi.Models.Database
 
         public Guid OfficeId { get; set; }
 
+        public Guid CompanyId { get; set; }
+
         public Office Office { get; set; }
     }
 }
