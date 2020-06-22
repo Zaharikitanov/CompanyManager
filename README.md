@@ -1,11 +1,17 @@
 # Company Manager
 
-TODO
+The application provides a possibility for users to CRUD companies, offices and employees.
 
 ## Functional Specifications
 
-TODO
+- Companies have a name and creation date. One company may have different offices.
+- Offices have a country, city, street, street number, documents (only word files and pdf) and if it is the
+headquarters or not.
+- An employee have a first name, last name starting date, salary, vacation days, and experience
+level (junior, mid, senior) and image. Also, employees may work from different offices, if they like to
+relocate for a summer. 
 
+All fields are required.
 
 ### Prerequisites
 * [Visual Studio](https://visualstudio.microsoft.com/vs/) 2017 or later.
@@ -16,7 +22,7 @@ TODO
 - project should be downloaded into your local machine
 - to communicate with the database, the connection string should be set in appsettings.json
   - `"ConnectionStrings": {
-    "DefaultConnection": "data source=ExampleServerName; initial catalog=GatewaysManager; integrated security=SSPI"
+    "DefaultConnection": "data source=ExampleServerName; initial catalog=CompanyManager; integrated security=SSPI"
   },` where ExampleServerName is the name of your sql server name
   - to retrieve your sql server name you can write in the command prompt: SQLCMD -L (this can take some time)
  - open Visual Studio and type the following commands into the Package Manager Console:
