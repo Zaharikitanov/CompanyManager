@@ -13,6 +13,11 @@ relocate for a summer.
 
 All fields are required.
 
+There is search to all entities:
+- For companies search by name
+- For offices search by country, city or street
+- For employees search by first name or last name
+
 ### Prerequisites
 * [Visual Studio](https://visualstudio.microsoft.com/vs/) 2017 or later.
 * [Sql Server Express](https://www.microsoft.com/en-us/download/details.aspx?id=55994)
