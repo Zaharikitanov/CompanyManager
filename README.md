@@ -1,28 +1,50 @@
 # Company Manager
 
-TODO
+The application provides a possibility for users to CRUD companies, offices and employees.
 
 ## Functional Specifications
 
-TODO
+- Companies have a name and creation date. One company may have different offices.
+- Offices have a country, city, street, street number, documents (only word files and pdf) and if it is the
+headquarters or not.
+- An employee have a first name, last name starting date, salary, vacation days, and experience
+level (junior, mid, senior) and image. Also, employees may work from different offices, if they like to
+relocate for a summer. 
 
+All fields are required.
+
+There is search to all entities:
+- For companies search by name
+- For offices search by country, city or street
+- For employees search by first name or last name
 
 ### Prerequisites
 * [Visual Studio](https://visualstudio.microsoft.com/vs/) 2017 or later.
 * [Sql Server Express](https://www.microsoft.com/en-us/download/details.aspx?id=55994)
+* [Node.js](https://nodejs.org/en/)
 
 ### Setup
 - items in the prerequsites section should be installed
 - project should be downloaded into your local machine
-- to communicate with the database, the connection string should be set in appsettings.json
+
+#### API and DB
+- to communicate with the database, the connection string should be set in **appsettings.json**
   - `"ConnectionStrings": {
-    "DefaultConnection": "data source=ExampleServerName; initial catalog=GatewaysManager; integrated security=SSPI"
+    "DefaultConnection": "data source=ExampleServerName; initial catalog=CompanyManager; integrated security=SSPI"
   },` where ExampleServerName is the name of your sql server name
   - to retrieve your sql server name you can write in the command prompt: SQLCMD -L (this can take some time)
  - open Visual Studio and type the following commands into the Package Manager Console:
    - add-migration init
    - update-database
-   
+ 
+ #### UI Project
+ Start the command prompt and navigate to the project folder of CompanyManagerUI
+ Type the following command to pull all the required packages: npm install
+ After that the project can be run with the following command: npm start
+ Navigate to **requests.tsx** file in the project folder and do the following changes:
+ - const serverAddress = "http://localhost:5000/api"; If you run on Kestrel the API project
+ - const serverAddress = "http://localhost:54538/api"; If you are running the API on IIS Express
+ 
  ## Project Description
  
  ### Technologies Used
