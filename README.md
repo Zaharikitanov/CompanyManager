@@ -21,10 +21,13 @@ There is search to all entities:
 ### Prerequisites
 * [Visual Studio](https://visualstudio.microsoft.com/vs/) 2017 or later.
 * [Sql Server Express](https://www.microsoft.com/en-us/download/details.aspx?id=55994)
+* [Node.js](https://nodejs.org/en/)
 
 ### Setup
 - items in the prerequsites section should be installed
 - project should be downloaded into your local machine
+
+#### API and DB
 - to communicate with the database, the connection string should be set in appsettings.json
   - `"ConnectionStrings": {
     "DefaultConnection": "data source=ExampleServerName; initial catalog=CompanyManager; integrated security=SSPI"
@@ -33,7 +36,13 @@ There is search to all entities:
  - open Visual Studio and type the following commands into the Package Manager Console:
    - add-migration init
    - update-database
-   
+ 
+ #### UI
+ Start the command prompt and navigate to the project folder of CompanyManagerUI
+ Type the following command to pull all the required packages: npm install
+ After that the project can be run with the following command: npm start
+ 
+ 
  ## Project Description
  
  ### Technologies Used
