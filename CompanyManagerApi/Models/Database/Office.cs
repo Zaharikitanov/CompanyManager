@@ -16,10 +16,10 @@ namespace CompanyManagerApi.Models.Database
         public string Street { get; set; }
 
         public int StreetNumber { get; set; }
-
-        public List<OfficeDocument> OfficeDocuments { get; set; } = new List<OfficeDocument>();
-
+        
         public bool IsHeadquarters { get; set; }
+
+        public string Documents { get; set; }
 
         public List<Employee> EmployeesList { get; set; } = new List<Employee>();
     }

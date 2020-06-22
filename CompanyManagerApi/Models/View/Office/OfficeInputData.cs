@@ -22,5 +22,8 @@ namespace CompanyManagerApi.Models.View
 
         [JsonProperty("isHeadquarters")]
         public bool IsHeadquarters { get; set; }
+
+        [JsonProperty("documents")]
+        public string Documents { get; set; }
     }
 }

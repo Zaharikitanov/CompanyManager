@@ -34,6 +34,14 @@ namespace CompanyManagerApi.Validators
                 .WithMessage("Required")
                 .MaximumLength(60);
 
+            RuleFor(entity => entity.Documents)
+                .NotEmpty()
+                .WithMessage("Required")
+                .NotNull()
+                .WithMessage("Required")
+                .Matches("([^\\s]+(\\.(?i)(doc|DOC|docx|DOCX|pdf|PDF))$)")
+                .WithMessage("Invalid file format.");
+
             RuleFor(entity => entity.StreetNumber)
                 .NotEmpty()
                 .WithMessage("Required")

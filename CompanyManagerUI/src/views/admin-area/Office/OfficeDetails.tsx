@@ -15,8 +15,6 @@ const OfficeDetails = (props): JSX.Element => {
 
   const { objectData } = useContext(UserContext);
 
-  let reload: boolean = false;
-
   return <>
     <ApiResource url={`office/${objectData.getObjectData}`}>
         {(facilityData: OfficeDetailsData) => 

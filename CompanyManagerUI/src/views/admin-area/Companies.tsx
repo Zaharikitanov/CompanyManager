@@ -32,7 +32,7 @@ const Companies = () => {
         <Form className="navbar-search mr-3">
           <FormGroup className="mb-0">
             <InputGroup className="input-group-alternative"
-            onChange={e => setSearch(e.target.value)}>
+              onChange={e => setSearch(e.target.value)}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
                   <i className="fas fa-search" />

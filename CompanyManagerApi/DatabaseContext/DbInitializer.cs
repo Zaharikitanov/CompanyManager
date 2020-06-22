@@ -54,8 +54,26 @@ namespace CompanyManagerApi.DatabaseContext
             {
                 System.Console.WriteLine("Adding employees - seeding...");
                 context.Employees.AddRange(
-                    new Employee() { OfficeId = officeId, FirstName = "Horst", LastName = "Fuchs", Salary = 5000, ExperienceLevel = EmployeeExperienceLevel.Senior, VacationDays = 20 },
-                    new Employee() { OfficeId = officeId, FirstName = "Peter", LastName = "Klaus", Salary = 4500, ExperienceLevel = EmployeeExperienceLevel.Senior, VacationDays = 20 }
+                    new Employee() {
+                        OfficeId = officeId,
+                        FirstName = "Horst",
+                        LastName = "Fuchs",
+                        Salary = 5000,
+                        ExperienceLevel = EmployeeExperienceLevel.Senior,
+                        VacationDays = 20,
+                        StartingDate = DateTime.Now.ToString(),
+                        ProfileImage = "profile_image.jpeg"
+                    },
+                    new Employee() {
+                        OfficeId = officeId,
+                        FirstName = "Peter",
+                        LastName = "Klaus",
+                        Salary = 4500,
+                        ExperienceLevel = EmployeeExperienceLevel.Mid,
+                        VacationDays = 20,
+                        StartingDate = DateTime.Now.ToString(),
+                        ProfileImage = "image.png"
+                    }
                 );
             }
             else
@@ -63,18 +81,6 @@ namespace CompanyManagerApi.DatabaseContext
                 System.Console.WriteLine("Already have employees data - not seeding");
             }
 
-            if (!context.Offices.Any())
-            {
-                System.Console.WriteLine("Adding documents - seeding...");
-                context.OfficeDocuments.AddRange(
-                    new OfficeDocument() { OfficeId = officeId, FileLocation = "/files/word/important.docx" },
-                    new OfficeDocument() { OfficeId = officeId, FileLocation = "/files/pdf/portfolio.pdf" }
-                );
-            }
-            else
-            {
-                System.Console.WriteLine("Already have documents data - not seeding");
-            }
             context.SaveChanges();
         }
     }

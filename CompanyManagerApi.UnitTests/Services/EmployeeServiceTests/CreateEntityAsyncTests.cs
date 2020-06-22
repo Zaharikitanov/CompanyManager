@@ -85,6 +85,8 @@ namespace CompanyManagerApi.UnitTests.Services.EmployeeServiceTests
 
         [TestCase("")]
         [TestCase(null)]
+        [TestCase("image.txt")]
+        [TestCase("image.pn")]
         public async Task Return_MissingFullEntityDataOutcome_When_ProfileImage_IsInvalid(string profileImage)
         {
             var invalidEntityData = ValidNewWebsiteData();

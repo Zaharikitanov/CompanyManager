@@ -16,8 +16,8 @@ export type EmployeeDetailsData = {
   lastName?: string;
   startingDate?: Date;
   salary?: string;
-  vacationDays?: EmployeeRole;
-  experienceLevel?: string;
+  vacationDays?: number;
+  experienceLevel?: EmployeeExperienceLevel;
   profileImage?: string;
   officeId?: string;
 }
@@ -47,6 +47,11 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
     { label: "Salary", value: undefinedChecker(inputData, "salary"), newValue: (newValue) => setEmployeeData({ ...employeeData, salary: newValue}) },
     { label: "Vacation Days", value: undefinedChecker(inputData, "vacationDays"), newValue: (newValue) => setEmployeeData({ ...employeeData, vacationDays: newValue}) },
     { label: "Profile Image", value: undefinedChecker(inputData, "profileImage"), newValue: (newValue) => setEmployeeData({ ...employeeData, profileImage: newValue}) },
+  ];
+
+  const additionalDetails = [
+    { label: "Starting Date", value: formatDate(inputData.startingDate) },
+    { label: "Experience Level", value: EmployeeExperienceLevel[inputData.experienceLevel] },
   ];
 
   useEffect(() => {
@@ -163,6 +168,17 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
               </FormGroup>
             </Col>
           )}
+          {additionalDetails.map((data, index) =>
+            <Col lg="4" key={index}>
+              <FormGroup>
+                <h6 className="heading-small text-muted f-size-16 my-1">
+                  {data.label}
+                </h6>
+                <hr className="my-1" />
+                <span>{data.value}</span>
+              </FormGroup>
+            </Col>
+          )}
           </>
       }
       default: {
@@ -187,15 +203,13 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
     switch (props.viewType) {
       case TemplateView.CreateNew: {
         return <>
-        {/* <Button color="success" className="mx-2" onClick={saveDataObject}>Search</Button> */}
           <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={saveDataObject} dataObjectId={inputData.officeId}/>
         </>
       }
       case TemplateView.Edit: {
         return <>
-        {/* <Button color="success" className="mx-2" onClick={updateDataObject}>Search</Button> */}
           <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.officeId}/>
-          <RedirectButton buttonColor="danger" buttonText="Delete" url={AdminRoute.Offices} callback={deleteDataObject} dataObjectId={inputData.officeId}/>
+          <RedirectButton buttonColor="danger" buttonText="Delete" url={AdminRoute.OfficeDetails} callback={deleteDataObject} dataObjectId={inputData.officeId}/>
         </>
       }
       case TemplateView.View: {

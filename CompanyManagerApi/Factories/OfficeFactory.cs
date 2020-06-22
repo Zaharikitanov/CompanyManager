@@ -15,7 +15,8 @@ namespace CompanyManagerApi.Factories
                 Country = viewData.Country,
                 IsHeadquarters = viewData.IsHeadquarters,
                 Street = viewData.Street,
-                StreetNumber = viewData.StreetNumber
+                StreetNumber = viewData.StreetNumber,
+                Documents = viewData.Documents
             };
         }
     }

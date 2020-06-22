@@ -93,6 +93,7 @@ namespace CompanyManagerApi.Services
             getCurrent.IsHeadquarters = viewData?.IsHeadquarters ?? getCurrent.IsHeadquarters;
             getCurrent.Street = viewData.Street ?? getCurrent.Street;
             getCurrent.StreetNumber = viewData?.StreetNumber ?? getCurrent.StreetNumber;
+            getCurrent.Documents = viewData.Documents ?? getCurrent.Documents;
 
             return getCurrent;
         }

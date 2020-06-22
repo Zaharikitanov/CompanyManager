@@ -15,9 +15,7 @@ namespace CompanyManagerApi.DatabaseContext
         public DbSet<Office> Offices { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
-
-        public DbSet<OfficeDocument> OfficeDocuments { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,12 +29,6 @@ namespace CompanyManagerApi.DatabaseContext
                 .HasMany(c => c.EmployeesList)
                 .WithOne(e => e.Office)
                 .HasForeignKey(e => e.OfficeId);
-
-            modelBuilder.Entity<Office>()
-                .HasMany(c => c.OfficeDocuments)
-                .WithOne(e => e.Office)
-                .HasForeignKey(e => e.OfficeId);
-
         }
     }
 }

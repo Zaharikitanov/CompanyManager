@@ -49,6 +49,8 @@ namespace CompanyManagerApi.Repositories
                     City = o.City,
                     Street = o.Street,
                     StreetNumber = o.StreetNumber,
+                    Documents = o.Documents,
+                    IsHeadquarters = o.IsHeadquarters,
                     EmployeesList = _dbContext.Employees
                     .Where(e => e.OfficeId == entityId).Select(e => _mapper.MapToViewModel(e))
                     .ToList()

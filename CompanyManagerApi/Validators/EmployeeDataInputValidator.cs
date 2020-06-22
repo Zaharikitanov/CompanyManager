@@ -37,7 +37,7 @@ namespace CompanyManagerApi.Validators
                 .NotNull()
                 .WithMessage("Required")
                 .Matches("([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)")
-                .WithMessage("Invalid image file format.");
+                .WithMessage("Invalid file format.");
 
             RuleFor(entity => entity.Salary)
                 .NotEmpty()

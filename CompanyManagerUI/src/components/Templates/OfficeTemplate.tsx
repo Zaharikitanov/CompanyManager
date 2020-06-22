@@ -19,6 +19,7 @@ export type OfficeUpdateData = {
   street?: string;
   streetNumber?: number;
   isHeadquarters?: boolean;
+  documents?: string;
 }
 
 type OfficeTemplateProps = {
@@ -47,6 +48,7 @@ const OfficeTemplate = (props: OfficeTemplateProps): JSX.Element => {
     { label: "City", value: undefinedChecker(inputData, "city"), newValue: (newValue) => setOfficeData({ ...officeData, city: newValue})},
     { label: "Street", value: undefinedChecker(inputData, "street"), newValue: (newValue) => setOfficeData({ ...officeData, street: newValue})},
     { label: "Street Number", value: undefinedChecker(inputData, "streetNumber"), newValue: (newValue) => setOfficeData({ ...officeData, streetNumber: newValue})},
+    { label: "Document", value: undefinedChecker(inputData, "documents"), newValue: (newValue) => setOfficeData({ ...officeData, documents: newValue})},
   ];
 
   const saveDataObject = () => {
@@ -54,7 +56,6 @@ const OfficeTemplate = (props: OfficeTemplateProps): JSX.Element => {
   }  
 
   const updateDataObject = () => {
-    console.log(officeData);
     UpdateItem(officeData, `office/${inputData.id}`);
   }
 
@@ -167,7 +168,6 @@ const OfficeTemplate = (props: OfficeTemplateProps): JSX.Element => {
       } 
       case TemplateView.Edit: { 
         return <>
-        {/* <Button color="success" className="mx-2" onClick={updateDataObject}>Search</Button> */}
          <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.id}/>
          <RedirectButton buttonColor="danger" buttonText="Delete" url={AdminRoute.CompanyDetails} callback={deleteDataObject} dataObjectId={inputData.companyId}/>
         </> 
