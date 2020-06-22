@@ -14,9 +14,9 @@ namespace CompanyManagerApi.Repositories
 {
     public class CompaniesRepository : BaseRepository, ICompaniesRepository
     {
-        private ICompanyDataMapper _mapper;
+        private IOfficeDataMapper _mapper;
 
-        public CompaniesRepository(CompanyManagerContext dbContext, ICompanyDataMapper mapper) : base(dbContext)
+        public CompaniesRepository(CompanyManagerContext dbContext, IOfficeDataMapper mapper) : base(dbContext)
         {
             _dbContext = dbContext;
             _mapper = mapper;
@@ -39,7 +39,15 @@ namespace CompanyManagerApi.Repositories
         public async Task<CompanyViewData> GetEntityDetailsAsync(Guid entityId)
         {
             var entity = await _dbContext.Companies.Where(e => e.Id == entityId)
-                .Select(e => _mapper.MapToViewModel(e)).SingleOrDefaultAsync();
+                .Select(e => new CompanyViewData
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    CreatedAt = e.CreatedAt,
+                    Offices = e.Offices
+                    .Where(o => o.CompanyId == entityId).Select(o => _mapper.MapToViewModel(o))
+                    .ToList()
+                }).SingleOrDefaultAsync();
 
             return entity;
         }

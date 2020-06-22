@@ -3,13 +3,14 @@ import { Row, Col, FormGroup, Input, Card, CardBody } from "reactstrap";
 import RedirectButton from '../Buttons/RedirectButton';
 import { AdminRoute } from '../../routes';
 import { TemplateView } from '../../components/enums/TemplateView';
-import PageBreadcrumbs, { BreadCrumbItem } from "../PageBreadcrumbs";
 import { CreateItem, DeleteItem, UpdateItem } from "../../helpers/requests";
 import { undefinedChecker } from "../../helpers/Checkers";
+import { FacilityListItem } from "../TableLists/FacilitiesList";
 
 export type CompanyDetailsData = {
   id: string;
   name: string;
+  offices: FacilityListItem[];
 }
 
 type CompanyTemplateProps = {
@@ -18,10 +19,6 @@ type CompanyTemplateProps = {
 }
 
 const CompanyTemplate = (props?: CompanyTemplateProps): JSX.Element => {
-
-  const breadcrumbs: Array<BreadCrumbItem> = [
-    {label: "Company"}
-  ];
 
   const [dropdownOpen, setOpen] = useState(false);
   const [companyData, setCompanyData] = useState({} as CompanyDetailsData);
@@ -139,7 +136,6 @@ const CompanyTemplate = (props?: CompanyTemplateProps): JSX.Element => {
   }
 
   return <>
-    <PageBreadcrumbs breadcrumbsList={breadcrumbs}/>
     <Card className="bg-secondary shadow mt-2">
       <CardBody>
         <h6 className="heading-small f-size-16">

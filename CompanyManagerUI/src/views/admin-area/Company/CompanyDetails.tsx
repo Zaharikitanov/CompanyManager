@@ -6,11 +6,6 @@ import { Card } from "reactstrap";
 import { UserContext } from "../../../userContext";
 import ApiResource from "../../../helpers/ApiResource";
 
-export type CompanyViewModel = {
-  companyDetails : CompanyDetailsData;
-  facilities: FacilityListItem[];
-}
-
 const CompanyDetails = (props): JSX.Element => {
 
   const {objectData} = useContext(UserContext);
@@ -21,7 +16,7 @@ const CompanyDetails = (props): JSX.Element => {
           <CompanyTemplate viewType={TemplateView.View} templateData={companyData} />
           <Card className="mt-4">
             <h6 className="heading-small f-size-16 m-4">Offices</h6>
-            {/* <FacilitiesList listData={companyData.facilities} /> */}
+            <FacilitiesList listData={companyData.offices} />
           </Card>
         </>}
     </ApiResource>

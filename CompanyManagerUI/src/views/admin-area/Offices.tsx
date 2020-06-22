@@ -33,7 +33,7 @@ const Offices = (props: FacilityListItem[]) => {
   const getResults = () => {
     loadData(`office/search?searchText=${search}&searchBy=${searchBy}`);
   }
-
+console.log(data);
   return (
     <div className="m-4">
         <Card className="p-4 d-flex-none align-middle w-100">

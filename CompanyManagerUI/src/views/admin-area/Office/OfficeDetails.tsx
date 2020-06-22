@@ -23,7 +23,7 @@ const OfficeDetails = (props): JSX.Element => {
         <>
           <OfficeTemplate viewType={TemplateView.View} templateData={facilityData} />
           <Card className="mt-4">
-            {/* <EmployeeList listData={facilityData.employees} /> */}
+            <EmployeeList listData={facilityData.employeesList} />
           </Card>
         </>}
     </ApiResource>

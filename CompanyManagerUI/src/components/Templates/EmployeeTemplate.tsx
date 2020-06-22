@@ -4,25 +4,21 @@ import RedirectButton from '../Buttons/RedirectButton';
 import { AdminRoute } from '../../routes';
 import { TemplateView } from '../enums/TemplateView';
 import { EmployeeRole } from '../enums/EmployeeRole';
-import PageBreadcrumbs, { BreadCrumbItem } from "../PageBreadcrumbs";
 import { undefinedChecker } from "../../helpers/Checkers";
 import { CreateItem, UpdateItem, DeleteItem } from "../../helpers/requests";
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { formatDate } from "../../helpers/Formatters";
 
 export type EmployeeDetailsData = {
-  name?: string;
-  email?: string;
-  phone?: string;
-  password?: string;
-  role?: EmployeeRole;
-  companyId: string;
-  facilityId: string;
   id?: string;
-  profileStatus?: ProfileStatus;
-}
-
-export enum ProfileStatus {
-  Active = "Active",
-  Deactivated = "Deactivated"
+  firstName?: string;
+  lastName?: string;
+  startingDate?: Date;
+  salary?: string;
+  vacationDays?: EmployeeRole;
+  experienceLevel?: string;
+  profileImage?: string;
+  officeId?: string;
 }
 
 type EmployeeTemplateProps = {
@@ -36,18 +32,14 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
   const [dropdownOpen, setOpen] = useState(false);
   const toggle = () => setOpen(!dropdownOpen);
   const [employeeData, setEmployeeData] = useState({} as EmployeeDetailsData);
-  let employeeRolesArray = Object.values(EmployeeRole);
   
-  const breadcrumbs: Array<BreadCrumbItem> = [
-      {label: "Фирма", url: AdminRoute.CompanyDetails, objectId: inputData.companyId},
-      {label: "Обект", url: AdminRoute.OfficeDetails, objectId: inputData.facilityId},
-      {label: "Служител"}
-  ];
-
   const employeeDetails = [
-    { label: "Име", value: undefinedChecker(inputData, "name"), newValue: (newValue) => setEmployeeData({ ...employeeData, name: newValue}) },
-    { label: "Имейл", value: undefinedChecker(inputData, "email"), newValue: (newValue) => setEmployeeData({ ...employeeData, email: newValue}) },
-    { label: "Телефон", value: undefinedChecker(inputData, "phone"), newValue: (newValue) => setEmployeeData({ ...employeeData, phone: newValue}) },
+    { label: "First Name", value: undefinedChecker(inputData, "firstName"), newValue: (newValue) => setEmployeeData({ ...employeeData, firstName: newValue}) },
+    { label: "Last Name", value: undefinedChecker(inputData, "lastName"), newValue: (newValue) => setEmployeeData({ ...employeeData, lastName: newValue}) },
+    { label: "Starting Date", value: undefinedChecker(inputData, "startingDate"), newValue: (newValue) => setEmployeeData({ ...employeeData, startingDate: newValue}) },
+    { label: "Salary", value: undefinedChecker(inputData, "salary"), newValue: (newValue) => setEmployeeData({ ...employeeData, salary: newValue}) },
+    { label: "Vacation Days", value: undefinedChecker(inputData, "vacationDays"), newValue: (newValue) => setEmployeeData({ ...employeeData, vacationDays: newValue}) },
+    { label: "Profile Image", value: undefinedChecker(inputData, "profileImage"), newValue: (newValue) => setEmployeeData({ ...employeeData, profileImage: newValue}) },
   ];
 
   useEffect(() => {
@@ -56,14 +48,10 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
     }
     if (props.viewType == TemplateView.CreateNew){
       setEmployeeData({ ...employeeData,
-        role: EmployeeRole.Employee,
-        companyId: inputData.companyId,
-        facilityId: inputData.facilityId,
-        profileStatus: ProfileStatus.Active
+        officeId: inputData.officeId,
       });
     }
   },[]);
-
   
   const renderFields = (): JSX.Element => {
     switch (props.viewType) {
@@ -86,15 +74,15 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
           <Col lg="4">
               <FormGroup>
                 <h6 className="heading-small text-muted f-size-16 my-1">
-                  Парола
+                  Starting Date
                 </h6>
-                <Input
-                  className="form-control-alternative"
-                  type="text"
-                  onChange={e => setEmployeeData({ ...employeeData, password: e.target.value})}
-                />
+                <DayPickerInput 
+                placeholder={"DD/MM/YYYY"}
+                value={employeeData.startingDate ? formatDate(employeeData.startingDate) : ""}
+                onDayChange={day => setEmployeeData({ ...employeeData, startingDate: day})} />
               </FormGroup>
-            </Col></>
+          </Col>
+        </>
       }
       case TemplateView.Edit: {
         return <>
@@ -112,7 +100,18 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
                 />
               </FormGroup>
             </Col>
-          )}</>
+          )}
+          <Col lg="4">
+              <FormGroup>
+                <h6 className="heading-small text-muted f-size-16 my-1">
+                  Starting Date
+                </h6>
+                <DayPickerInput 
+                  value={formatDate(employeeData.startingDate)}
+                  onDayChange={day => setEmployeeData({ ...employeeData, startingDate: day})} />
+              </FormGroup>
+          </Col>
+        </>
       }
       case TemplateView.View: {
         return <>
@@ -127,15 +126,7 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
               </FormGroup>
             </Col>
           )}
-          <Col lg="4">
-              <FormGroup>
-                <h6 className="heading-small text-muted f-size-16 my-1">
-                  Статус
-                </h6>
-                <hr className="my-1" />
-                <span>{inputData.profileStatus}</span>
-              </FormGroup>
-            </Col></>
+          </>
       }
       default: {
         return <span>Template Type Unknown</span>
@@ -148,7 +139,8 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
   }  
 
   const updateDataObject = () => {
-    UpdateItem(employeeData, "employee");
+    console.log(employeeData);
+    UpdateItem(employeeData, `employee/${employeeData.id}`);
   }
 
   const deleteDataObject = () => {
@@ -159,13 +151,14 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
     switch (props.viewType) {
       case TemplateView.CreateNew: {
         return <>
-          <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.OfficeDetails} callback={saveDataObject} dataObjectId={inputData.facilityId}/>
+          <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={saveDataObject} dataObjectId={inputData.officeId}/>
         </>
       }
       case TemplateView.Edit: {
         return <>
-          <RedirectButton buttonColor="success" buttonText="Запази" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.facilityId}/>
-          <RedirectButton buttonColor="danger" buttonText="Изтрий Служителя" url={AdminRoute.OfficeDetails} callback={deleteDataObject} dataObjectId={inputData.facilityId}/>
+        <Button color="success" className="mx-2" onClick={updateDataObject}>Search</Button>
+          {/* <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.officeId}/> */}
+          <RedirectButton buttonColor="danger" buttonText="Delete" url={AdminRoute.OfficeDetails} callback={deleteDataObject} dataObjectId={inputData.officeId}/>
         </>
       }
       case TemplateView.View: {
@@ -178,45 +171,17 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
   }
 
   return <>
-    <PageBreadcrumbs breadcrumbsList={breadcrumbs}/>
     <Card className="bg-secondary shadow mt-2">
       <CardBody>
         <h6 className="heading-small f-size-16">
-          Детайли на служителя
+          Employee Details
           {props.viewType === TemplateView.View &&
-            <RedirectButton className="teal-background white-font-color ml-4" buttonText="Редактирай" url={AdminRoute.EditEmployee} />
+            <RedirectButton className="teal-background white-font-color ml-4" buttonText="Edit" url={AdminRoute.EditEmployee} />
           }
         </h6>
 
         <Row className="mt-4">
           {renderFields()}
-          <Col lg="4">
-            <FormGroup>
-              <h6 className="heading-small text-muted f-size-16 my-1">
-                Позиция във фирмата
-              </h6>
-              {props.viewType === TemplateView.View ?
-                <>
-                  <hr className="my-1" />
-                  <span>{inputData.role}</span>
-                </>
-                :
-                <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                  <DropdownToggle caret className="px-5 teal-background white-font-color">
-                  {props.viewType === TemplateView.Edit
-                    ? <>{employeeData.role}</>
-                    : <>{employeeData.role ? employeeData.role : "Избери"}</>
-                    }
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {employeeRolesArray.map((data, index) =>
-                      <DropdownItem key={index} onClick={() => setEmployeeData({ ...employeeData, role: data})}>{data}</DropdownItem>
-                    )}
-                  </DropdownMenu>
-                </ButtonDropdown>
-              }
-            </FormGroup>
-          </Col>
         </Row>
         {renderButtons()}
       </CardBody>

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace CompanyManagerApi.Models.View
 {
@@ -9,6 +10,9 @@ namespace CompanyManagerApi.Models.View
         public Guid Id { get; set; }
 
         [JsonProperty("employees")]
-        public int EmployeesAmount { get; set; }
+        public int Employees { get; set; }
+
+        [JsonProperty("employeesList")]
+        public List<EmployeeViewData> EmployeesList { get; set; } = new List<EmployeeViewData>();
     }
 }

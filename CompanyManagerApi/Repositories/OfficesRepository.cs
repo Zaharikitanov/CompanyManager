@@ -14,9 +14,9 @@ namespace CompanyManagerApi.Repositories
 {
     public class OfficesRepository : BaseRepository, IOfficesRepository
     {
-        private IOfficeDataMapper _mapper;
+        private IEmployeeDataMapper _mapper;
 
-        public OfficesRepository(CompanyManagerContext dbContext, IOfficeDataMapper mapper) : base(dbContext)
+        public OfficesRepository(CompanyManagerContext dbContext, IEmployeeDataMapper mapper) : base(dbContext)
         {
             _dbContext = dbContext;
             _mapper = mapper;
@@ -25,10 +25,14 @@ namespace CompanyManagerApi.Repositories
         public async Task<List<OfficeViewData>> GetEntitiesListAsync()
         {
             var entities = await _dbContext.Offices
-                .Select(e => new OfficeViewData {
-                    Id = e.Id,
-                    CompanyId = e.CompanyId,
-
+                .Select(o => new OfficeViewData {
+                    Id = o.Id,
+                    CompanyId = o.CompanyId,
+                    Country = o.Country,
+                    City = o.City,
+                    Street = o.Street,
+                    StreetNumber = o.StreetNumber,
+                    Employees = o.Employees.Where(e => e.OfficeId == o.Id).Count()
                 }).ToListAsync();
 
             return entities;
@@ -37,7 +41,18 @@ namespace CompanyManagerApi.Repositories
         public async Task<OfficeViewData> GetEntityDetailsAsync(Guid entityId)
         {
             var entity = await _dbContext.Offices.Where(e => e.Id == entityId)
-                .Select(e => _mapper.MapToViewModel(e)).SingleOrDefaultAsync();
+                .Select(o => new OfficeViewData
+                {
+                    Id = o.Id,
+                    CompanyId = o.CompanyId,
+                    Country = o.Country,
+                    City = o.City,
+                    Street = o.Street,
+                    StreetNumber = o.StreetNumber,
+                    EmployeesList = _dbContext.Employees
+                    .Where(e => e.OfficeId == entityId).Select(e => _mapper.MapToViewModel(e))
+                    .ToList()
+                }).SingleOrDefaultAsync();
 
             return entity;
         }
@@ -71,7 +86,16 @@ namespace CompanyManagerApi.Repositories
             sorts.Add(sortBy == OfficeSearchOptions.Street, x => x.Street);
 
             return await _dbContext.Offices
-                .Select(e => _mapper.MapToViewModel(e))
+                .Select(o => new OfficeViewData
+                {
+                    Id = o.Id,
+                    CompanyId = o.CompanyId,
+                    Country = o.Country,
+                    City = o.City,
+                    Street = o.Street,
+                    StreetNumber = o.StreetNumber,
+                    Employees = _dbContext.Employees.Where(e => e.OfficeId == o.Id).Count()
+                })
                 .PaginateAsync(currentPage, pageSize, sorts, filters);
         }
     }

@@ -3,12 +3,13 @@ import { Row, Col, Button, InputGroup, InputGroupAddon, InputGroupText, FormGrou
 import RedirectButton from '../Buttons/RedirectButton';
 import { AdminRoute } from '../../routes';
 import { TemplateView } from '../enums/TemplateView';
-import PageBreadcrumbs, { BreadCrumbItem } from '../PageBreadcrumbs';
 import { CreateItem, UpdateItem, DeleteItem } from "../../helpers/requests";
 import { undefinedChecker } from "../../helpers/Checkers";
+import { EmployeeListItem } from "../TableLists/EmployeesList";
 
 export type OfficeDetailsData = OfficeUpdateData & {
   id?: string;
+  employeesList?: EmployeeListItem[];
 }
 
 export type OfficeUpdateData = {
@@ -40,11 +41,6 @@ const OfficeTemplate = (props: OfficeTemplateProps): JSX.Element => {
       });
     }
   },[]);
-
-  const breadcrumbs: Array<BreadCrumbItem> = [
-    {label: "Company", url: AdminRoute.CompanyDetails, objectId: inputData.companyId},
-    {label: "Office"}
-  ];
 
   const inputLabels = [
     { label: "Country", value: undefinedChecker(inputData, "country"), newValue: (newValue) => setOfficeData({ ...officeData, country: newValue}) },
@@ -188,7 +184,6 @@ const OfficeTemplate = (props: OfficeTemplateProps): JSX.Element => {
   }
 
   return <>
-    <PageBreadcrumbs breadcrumbsList={breadcrumbs}/>
     <Card className="bg-secondary shadow mt-2">
       <CardBody>
         <h6 className="heading-small f-size-16">
