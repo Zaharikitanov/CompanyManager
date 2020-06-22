@@ -28,7 +28,7 @@ There is search to all entities:
 - project should be downloaded into your local machine
 
 #### API and DB
-- to communicate with the database, the connection string should be set in appsettings.json
+- to communicate with the database, the connection string should be set in **appsettings.json**
   - `"ConnectionStrings": {
     "DefaultConnection": "data source=ExampleServerName; initial catalog=CompanyManager; integrated security=SSPI"
   },` where ExampleServerName is the name of your sql server name
@@ -41,7 +41,7 @@ There is search to all entities:
  Start the command prompt and navigate to the project folder of CompanyManagerUI
  Type the following command to pull all the required packages: npm install
  After that the project can be run with the following command: npm start
- Navigate to requests.tsx file in the project folder and do the following changes:
+ Navigate to **requests.tsx** file in the project folder and do the following changes:
  - const serverAddress = "http://localhost:5000/api"; If you run on Kestrel the API project
  - const serverAddress = "http://localhost:54538/api"; If you are running the API on IIS Express
  
