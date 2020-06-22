@@ -17,6 +17,7 @@ namespace CompanyManagerApi.Factories
                 ProfileImage = viewData.ProfileImage,
                 Salary = viewData.Salary,
                 VacationDays = viewData.VacationDays,
+                StartingDate = viewData.StartingDate
             };
         }
     }

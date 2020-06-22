@@ -32,7 +32,7 @@ namespace CompanyManagerApi.Repositories
                     City = o.City,
                     Street = o.Street,
                     StreetNumber = o.StreetNumber,
-                    Employees = o.Employees.Where(e => e.OfficeId == o.Id).Count()
+                    Employees = o.EmployeesList.Where(e => e.OfficeId == o.Id).Count()
                 }).ToListAsync();
 
             return entities;

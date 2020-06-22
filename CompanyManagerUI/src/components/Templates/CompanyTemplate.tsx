@@ -126,7 +126,7 @@ const CompanyTemplate = (props?: CompanyTemplateProps): JSX.Element => {
       } 
       case TemplateView.View: { 
         return <>
-        {/* <RedirectButton buttonColor="success" buttonText="Add Office" url={AdminRoute.AddFacility} dataObjectId={inputData.id}/> */}
+        <RedirectButton buttonColor="success" buttonText="Add Office" url={AdminRoute.AddFacility} dataObjectId={inputData.id}/>
         </> 
       } 
       default: { 

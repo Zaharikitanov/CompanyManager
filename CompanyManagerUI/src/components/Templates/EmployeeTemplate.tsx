@@ -8,6 +8,7 @@ import { undefinedChecker } from "../../helpers/Checkers";
 import { CreateItem, UpdateItem, DeleteItem } from "../../helpers/requests";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { formatDate } from "../../helpers/Formatters";
+import { EmployeeExperienceLevel } from "../TableLists/EmployeesList";
 
 export type EmployeeDetailsData = {
   id?: string;
@@ -32,11 +33,17 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
   const [dropdownOpen, setOpen] = useState(false);
   const toggle = () => setOpen(!dropdownOpen);
   const [employeeData, setEmployeeData] = useState({} as EmployeeDetailsData);
+  let experienceLevel = [];
+
+  for (let item in EmployeeExperienceLevel) {
+      if (!isNaN(Number(item))) {
+        experienceLevel.push(item);
+      }
+  }
   
   const employeeDetails = [
     { label: "First Name", value: undefinedChecker(inputData, "firstName"), newValue: (newValue) => setEmployeeData({ ...employeeData, firstName: newValue}) },
     { label: "Last Name", value: undefinedChecker(inputData, "lastName"), newValue: (newValue) => setEmployeeData({ ...employeeData, lastName: newValue}) },
-    { label: "Starting Date", value: undefinedChecker(inputData, "startingDate"), newValue: (newValue) => setEmployeeData({ ...employeeData, startingDate: newValue}) },
     { label: "Salary", value: undefinedChecker(inputData, "salary"), newValue: (newValue) => setEmployeeData({ ...employeeData, salary: newValue}) },
     { label: "Vacation Days", value: undefinedChecker(inputData, "vacationDays"), newValue: (newValue) => setEmployeeData({ ...employeeData, vacationDays: newValue}) },
     { label: "Profile Image", value: undefinedChecker(inputData, "profileImage"), newValue: (newValue) => setEmployeeData({ ...employeeData, profileImage: newValue}) },
@@ -82,6 +89,21 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
                 onDayChange={day => setEmployeeData({ ...employeeData, startingDate: day})} />
               </FormGroup>
           </Col>
+          <Col lg="4">
+            <h6 className="heading-small text-muted f-size-16 my-1">
+              Experience Level
+            </h6>
+            <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle caret className="px-2 w-100px teal-background white-font-color">
+                {EmployeeExperienceLevel[EmployeeExperienceLevel.Junior]}
+              </DropdownToggle>
+              <DropdownMenu>
+                {experienceLevel.map((data, index) =>
+                  <DropdownItem key={index} onClick={() => setEmployeeData({ ...employeeData, experienceLevel: data})}>{EmployeeExperienceLevel[data]}</DropdownItem>
+                )}
+              </DropdownMenu>
+            </ButtonDropdown>
+          </Col>
         </>
       }
       case TemplateView.Edit: {
@@ -111,6 +133,21 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
                   onDayChange={day => setEmployeeData({ ...employeeData, startingDate: day})} />
               </FormGroup>
           </Col>
+          <Col lg="4">
+            <h6 className="heading-small text-muted f-size-16 my-1">
+              Experience Level
+            </h6>
+            <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle caret className="px-2 w-100px teal-background white-font-color">
+                {EmployeeExperienceLevel[employeeData.experienceLevel]}
+              </DropdownToggle>
+              <DropdownMenu>
+                {experienceLevel.map((data, index) =>
+                  <DropdownItem key={index} onClick={() => setEmployeeData({ ...employeeData, experienceLevel: data})}>{EmployeeExperienceLevel[data]}</DropdownItem>
+                )}
+              </DropdownMenu>
+            </ButtonDropdown>
+          </Col>
         </>
       }
       case TemplateView.View: {
@@ -139,7 +176,6 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
   }  
 
   const updateDataObject = () => {
-    console.log(employeeData);
     UpdateItem(employeeData, `employee/${employeeData.id}`);
   }
 
@@ -151,14 +187,15 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
     switch (props.viewType) {
       case TemplateView.CreateNew: {
         return <>
+        {/* <Button color="success" className="mx-2" onClick={saveDataObject}>Search</Button> */}
           <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={saveDataObject} dataObjectId={inputData.officeId}/>
         </>
       }
       case TemplateView.Edit: {
         return <>
-        <Button color="success" className="mx-2" onClick={updateDataObject}>Search</Button>
-          {/* <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.officeId}/> */}
-          <RedirectButton buttonColor="danger" buttonText="Delete" url={AdminRoute.OfficeDetails} callback={deleteDataObject} dataObjectId={inputData.officeId}/>
+        {/* <Button color="success" className="mx-2" onClick={updateDataObject}>Search</Button> */}
+          <RedirectButton buttonColor="success" buttonText="Save" url={AdminRoute.OfficeDetails} callback={updateDataObject} dataObjectId={inputData.officeId}/>
+          <RedirectButton buttonColor="danger" buttonText="Delete" url={AdminRoute.Offices} callback={deleteDataObject} dataObjectId={inputData.officeId}/>
         </>
       }
       case TemplateView.View: {
@@ -180,7 +217,7 @@ const EmployeeTemplate = (props: EmployeeTemplateProps): JSX.Element => {
           }
         </h6>
 
-        <Row className="mt-4">
+        <Row className="mt-4 pb-3">
           {renderFields()}
         </Row>
         {renderButtons()}

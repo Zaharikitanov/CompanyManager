@@ -4,6 +4,7 @@ import RedirectButton from '../Buttons/RedirectButton';
 import { AdminRoute } from '../../routes';
 import { EmployeeDetailsData } from "../Templates/EmployeeTemplate";
 import { UserContext } from "../../userContext";
+import { formatDate } from "../../helpers/Formatters";
 
 export enum EmployeeExperienceLevel {
   Junior,
@@ -28,7 +29,6 @@ const EmployeesList = (props: EmployeesListProps): JSX.Element => {
   const { objectData } = useContext(UserContext);
   const employeeData: EmployeeDetailsData = {} as EmployeeDetailsData;
 
-console.log(props);
   return <>
       <Table className="align-items-center table-flush table-striped" responsive>
         <thead className="silver-background black-font-color">
@@ -46,7 +46,7 @@ console.log(props);
               <td><RedirectButton className="teal-background white-font-color" buttonText="Details" url={AdminRoute.EmployeeDetails} dataObjectId={data.id}/></td>
               <td className="f-size-16">{data.firstName}</td>
               <td className="f-size-16">{data.lastName}</td>
-              <td className="f-size-16">{data.startingDate}</td>
+              <td className="f-size-16">{formatDate(data.startingDate, 'DD/MM/YYYY')}</td>
               <td className="f-size-16">{EmployeeExperienceLevel[data.experienceLevel]}</td>
             </tr>
           )}

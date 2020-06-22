@@ -28,7 +28,7 @@ namespace CompanyManagerApi.DatabaseContext
                 .HasForeignKey(e => e.CompanyId);
 
             modelBuilder.Entity<Office>()
-                .HasMany(c => c.Employees)
+                .HasMany(c => c.EmployeesList)
                 .WithOne(e => e.Office)
                 .HasForeignKey(e => e.OfficeId);
 

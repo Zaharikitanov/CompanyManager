@@ -174,7 +174,7 @@ const OfficeTemplate = (props: OfficeTemplateProps): JSX.Element => {
       } 
       case TemplateView.View: { 
         return <>
-        <RedirectButton buttonColor="success" buttonText="Add Employee" url={AdminRoute.AddEmployee} dataObjectId={{companyId: inputData.companyId, facilityId: inputData.id}}/>
+        <RedirectButton buttonColor="success" buttonText="Add Employee" url={AdminRoute.AddEmployee} dataObjectId={inputData.id}/>
         </> 
       } 
       default: { 

@@ -94,6 +94,7 @@ namespace CompanyManagerApi.Services
             getCurrent.ProfileImage = viewData.ProfileImage ?? getCurrent.ProfileImage;
             getCurrent.Salary = viewData?.Salary ?? getCurrent.Salary;
             getCurrent.VacationDays = viewData?.VacationDays ?? getCurrent.VacationDays;
+            getCurrent.StartingDate = viewData?.StartingDate ?? getCurrent.StartingDate;
 
             return getCurrent;
         }
