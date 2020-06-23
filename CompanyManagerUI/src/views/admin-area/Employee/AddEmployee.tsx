@@ -6,10 +6,10 @@ import { UserContext } from '../../../userContext';
 const AddEmployee = (props) => {
 
   const {objectData} = useContext(UserContext);
-  const officeId: EmployeeDetailsData = {officeId: objectData.getObjectData.officeId}
+  const templateData: EmployeeDetailsData = {officeId: objectData.getObjectData.officeId, companyId: objectData.getObjectData.companyId}
   
   return <>
-    <EmployeeTemplate viewType={TemplateView.CreateNew} templateData={officeId}/>
+    <EmployeeTemplate viewType={TemplateView.CreateNew} templateData={templateData}/>
   </>
 }
 

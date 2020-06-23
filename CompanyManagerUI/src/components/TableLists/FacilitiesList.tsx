@@ -17,7 +17,7 @@ type FacilitiesListProps = {
 }
 
 const FacilitiesList = (props: FacilitiesListProps): JSX.Element => {
-  
+ 
   return <>
     <Card className="mt-4">
       <Table className="align-items-center table-flush table-striped" responsive>
