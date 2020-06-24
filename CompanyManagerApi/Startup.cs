@@ -79,9 +79,9 @@ namespace CompanyManagerApi
 
         private static void RegisterRepositories(IServiceCollection services)
         {
-            services.AddTransient<ICompaniesRepository, CompaniesRepository>();
-            services.AddTransient<IOfficesRepository, OfficesRepository>();
-            services.AddTransient<IEmployeesRepository, EmployeesRepository>();
+            services.AddScoped<ICompaniesRepository, CompaniesRepository>();
+            services.AddScoped<IOfficesRepository, OfficesRepository>();
+            services.AddScoped<IEmployeesRepository, EmployeesRepository>();
         }
 
         private static void RegisterFactories(IServiceCollection services)
