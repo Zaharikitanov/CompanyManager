@@ -40,7 +40,7 @@ namespace CompanyManagerApi.Services
             return EntityActionOutcome.Success;
         }
 
-        public async Task<EntityActionOutcome> UpdateEntityAsync(CompanyViewData viewData)
+        public async Task<EntityActionOutcome> UpdateEntityAsync(CompanyInputData viewData)
         {
             var validator = new CompanyDataInputValidator();
             var result = validator.Validate(viewData);

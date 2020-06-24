@@ -20,6 +20,6 @@ namespace CompanyManagerApi.Services.Interfaces
             int currentPage, 
             string searchText, 
             CompanySearchOptions sortBy);
-        Task<EntityActionOutcome> UpdateEntityAsync(CompanyViewData viewData);
+        Task<EntityActionOutcome> UpdateEntityAsync(CompanyInputData viewData);
     }
 }

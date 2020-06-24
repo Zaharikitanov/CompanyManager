@@ -57,7 +57,7 @@ namespace CompanyManagerApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpStatusCode> Update(CompanyViewData inputData)
+        public async Task<HttpStatusCode> Update(CompanyInputData inputData)
         {
             var updateEntityOutcome = await _service.UpdateEntityAsync(inputData);
 
