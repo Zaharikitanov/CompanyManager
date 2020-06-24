@@ -72,9 +72,9 @@ namespace CompanyManagerApi
         }
         private static void RegisterBusinessLogicServices(IServiceCollection services)
         {
-            services.AddTransient<ICompanyService, CompanyService>();
-            services.AddTransient<IOfficeService, OfficeService>();
-            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddSingleton<ICompanyService, CompanyService>();
+            services.AddSingleton<IOfficeService, OfficeService>();
+            services.AddSingleton<IEmployeeService, EmployeeService>();
         }
 
         private static void RegisterRepositories(IServiceCollection services)
@@ -86,17 +86,17 @@ namespace CompanyManagerApi
 
         private static void RegisterFactories(IServiceCollection services)
         {
-            services.AddTransient<ICompanyFactory, CompanyFactory>();
-            services.AddTransient<IOfficeFactory, OfficeFactory>();
-            services.AddTransient<IEmployeeFactory, EmployeeFactory>();
-            services.AddTransient<IStatusCodeResultFactory, StatusCodeResultFactory>();
+            services.AddSingleton<ICompanyFactory, CompanyFactory>();
+            services.AddSingleton<IOfficeFactory, OfficeFactory>();
+            services.AddSingleton<IEmployeeFactory, EmployeeFactory>();
+            services.AddSingleton<IStatusCodeResultFactory, StatusCodeResultFactory>();
         }
 
         private static void RegisterDataMappers(IServiceCollection services)
         {
-            services.AddTransient<ICompanyDataMapper, CompanyDataMapper>();
-            services.AddTransient<IOfficeDataMapper, OfficeDataMapper>();
-            services.AddTransient<IEmployeeDataMapper, EmployeeDataMapper>();
+            services.AddSingleton<ICompanyDataMapper, CompanyDataMapper>();
+            services.AddSingleton<IOfficeDataMapper, OfficeDataMapper>();
+            services.AddSingleton<IEmployeeDataMapper, EmployeeDataMapper>();
         }
     }
 }
