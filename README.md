@@ -29,9 +29,12 @@ There is search to all entities:
 
 #### API and DB
 - to communicate with the database, the connection string should be set in **appsettings.json**
-  - `"ConnectionStrings": {
-    "DefaultConnection": "data source=ExampleServerName; initial catalog=CompanyManager; integrated security=SSPI"
-  },` where ExampleServerName is the name of your sql server name
+  - ```
+      "ConnectionStrings": {
+        "DefaultConnection": "data source=ExampleServerName; initial catalog=CompanyManager; integrated security=SSPI"
+      },
+    ``` 
+    where ExampleServerName is the name of your sql server name
   - to retrieve your sql server name you can write in the command prompt: SQLCMD -L (this can take some time)
  - open Visual Studio and type the following commands into the Package Manager Console:
    - add-migration init
